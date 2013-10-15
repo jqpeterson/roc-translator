@@ -25,7 +25,7 @@ testRcvByte = do
   hOpenSerial port defaultSerialSettings { commSpeed = CS19200, timeout = 50 }
   return ()
   
-
+--https://github.com/jputcu/serialport.git
 
 
 receiveLoop :: Handle -> IO Handle
