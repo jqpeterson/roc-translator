@@ -1,36 +1,34 @@
 module Protocol.ROC where
 
+import Control.Applicative
+import System.Hardware.Serialport.Posix
 import Control.Monad
 import System.IO
-import qualified Data.ByteString.Char8 as B
 import System.Hardware.Serialport
-import qualified System.Timeout as T
-testSendPort = do
+import Data.Bits
+import Numeric
+import Data.Word
+import qualified Data.ByteString as BS
+import Foreign.CRC
+import qualified Data.ByteString.Lazy as LB
+import Data.ByteString.Builder
+
+testSndRcvPort = do
   let port = "/dev/ttyUSB0"  -- Linux
-  s <- openSerial port defaultSerialSettings { commSpeed = CS19200 }
-  send s $ B.pack "Ar"
-  recv s 10 >>= print
+  let str = [1,2,1,0,7,0,123,221] :: [Word8]
+  let str' = [0x01,0x02,0x01,0x00,0x07,0x00,0x7B,0xDD]
+  s <- openSerial port defaultSerialSettings {commSpeed = CS19200, timeout = 50 }
+--  let test = LB.toStrict.toLazyByteString.word16LE.crcWord16List.makeWord16Listbe $ pack16 str'
+ -- let tString =  pack16 str'
+ --     test    =  LB.toStrict.toLazyByteString.word16LE.crcWord16List.makeWord16Listbe $ tString
+--  print (showHex <$> BS.unpack test <*> [""])
+--  let output = BS.append (BS.pack str') test
+--  print (showHex <$> BS.unpack output <*> [""])
+--  send s $ BS.append (BS.pack str') test
+  send s $ BS.pack str
+  bs <- recv s 248
+  print (showHex <$> BS.unpack bs <*> [""])
   closeSerial s
 
-
-testRcvPort = do
-  let port = "/dev/ttyUSB0"  -- Linux
-  s <- openSerial port defaultSerialSettings { commSpeed = CS19200, timeout = 50 }
-  recv s 10000 >>= print
-  closeSerial s
-  testRcvPort
-
-testRcvByte = do 
-  let port = "/dev/ttyUSB0"   -- Linux
-  hOpenSerial port defaultSerialSettings { commSpeed = CS19200, timeout = 50 }
-  return ()
-  
---https://github.com/jputcu/serialport.git
-
-
-receiveLoop :: Handle -> IO Handle
-receiveLoop h = do
-  hTest <- hReady h
-  case hTest of 
-    True -> return h
-    False -> receiveLoop h
+pack16 :: [Word16] -> LB.ByteString
+pack16 wList = LB.concat $ map  (toLazyByteString.word16BE ) wList
