@@ -15,20 +15,16 @@ import Data.ByteString.Builder
 
 testSndRcvPort = do
   let port = "/dev/ttyUSB0"  -- Linux
-  let str = [1,2,1,0,7,0,123,221] :: [Word8]
-  let str' = [0x01,0x02,0x01,0x00,0x07,0x00,0x7B,0xDD]
-  s <- openSerial port defaultSerialSettings {commSpeed = CS19200, timeout = 50 }
---  let test = LB.toStrict.toLazyByteString.word16LE.crcWord16List.makeWord16Listbe $ pack16 str'
- -- let tString =  pack16 str'
- --     test    =  LB.toStrict.toLazyByteString.word16LE.crcWord16List.makeWord16Listbe $ tString
---  print (showHex <$> BS.unpack test <*> [""])
---  let output = BS.append (BS.pack str') test
---  print (showHex <$> BS.unpack output <*> [""])
---  send s $ BS.append (BS.pack str') test
-  send s $ BS.pack str
+  let str = [1,2,1,0,7,0] :: [Word8]
+  s <- openSerial port defaultSerialSettings {commSpeed = CS9600, timeout = 50 }
+  let stringCRC = LB.toStrict.toLazyByteString.word16LE.crcWord16List.makeWord16Listbe $ pack8to16 str
+  send s $ BS.append (BS.pack str) stringCRC
+--  print (showHex <$> BS.unpack (BS.append (BS.pack str) stringCRC) <*> [""])
   bs <- recv s 248
-  print (showHex <$> BS.unpack bs <*> [""])
+--  print (showHex <$> BS.unpack bs <*> [""])
+  print $ bs
   closeSerial s
 
-pack16 :: [Word16] -> LB.ByteString
-pack16 wList = LB.concat $ map  (toLazyByteString.word16BE ) wList
+pack8to16 :: [Word8] -> LB.ByteString
+pack8to16 wList = let cwList = fromIntegral <$> wList
+                  in LB.concat $ map  (toLazyByteString.word16BE ) cwList
