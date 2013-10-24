@@ -18,7 +18,10 @@ Library
   Build-Depends:        base >= 4 && < 5
                         ,crc-fast == 0.1.0 
                        , serialport >= 0.4.7 && < 0.4.8
+                       , transformers >= 0.3.0.0 && < 0.4.0.0
                        , bytestring >= 0.10.4.0 && < 0.10.4.1
+                       , lens       >= 3.10 && < 4
+
                        , crc16-table == 0.1
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
