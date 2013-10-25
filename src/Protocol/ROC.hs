@@ -20,11 +20,12 @@ testSndRcvPort str = do
   let stringCRC = LB.toStrict.toLazyByteString.word16LE.crcWord16List.makeWord16Listbe $ pack8to16 str
   send s $ BS.append (BS.pack str) stringCRC
 --  print (showHex <$> BS.unpack (BS.append (BS.pack str) stringCRC) <*> [""])
-  bs <- recv (s) 248
+  bs <- recv s 248
   print (showHex <$> BS.unpack bs  <*> [""])
   closeSerial s
 
-
+bsEmpty :: BS.ByteString
+bsEmpty = ""
 
 pack8to16 :: [Word8] -> LB.ByteString
 pack8to16 wList = let cwList = fromIntegral <$> wList
