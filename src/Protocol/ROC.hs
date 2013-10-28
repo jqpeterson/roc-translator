@@ -28,7 +28,6 @@ opCode7 port usr = do
   print $ showInt <$> BS.unpack bs <*> [""]  
  
 opCode17 port usr = do
-  
   bs <- sndRcvPort port (usr ++ [1,0,17,5,76,79,73,232,3])
   print $ showInt <$> BS.unpack bs <*> [""]
 --  print $ BS.unpack.LB.toStrict.toLazyByteString.string7 $ username
@@ -36,11 +35,18 @@ opCode17 port usr = do
 --  let bytestr = sndRcvPort port ((usr ++ dest) ++ code7list)
 --  print $ BS.index bytestr 4  
 
+opCode0 port usr = do
+  bs <- sndRcvPort port (usr ++ [1,0,0,2,0,255])
+  s <- openSerial port defaultSerialSettings { commSpeed = CS9600 }
+  bs1 <- recvAllBytes s 255
+  print $ showInt <$> (BS.unpack bs) <*> [""]
+  print $ showInt <$> (BS.unpack bs1) <*> [""]
+  closeSerial s
+
 sndRcvPort port str = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS9600 }
   send s $ BS.append (BS.pack str)(lzyBSto16BScrc (pack8to16 $ str))  
-  bs <- xsrecvAllBytes s 20 
- -- print $ showHex <$> (BS.unpack bs) <*> [""]
+  bs <- recvAllBytes s 255 
   let returnCRC = lzyBSto16BScrc $ pack8to16 $ BS.unpack $ bs  
   let pulledCRC = BS.reverse.BS.take 2 $ BS.reverse bs  
 --  print $ BS.all crcTestBS returnCRC 
