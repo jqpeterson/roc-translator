@@ -17,6 +17,7 @@ import Control.Lens
 import Control.Lens.Lens
 import Control.Lens.Getter
 import Control.Monad.Trans.State.Strict
+import Protocol.ROC.PointTypes
 
 crcTestBS :: Word8 -> Bool
 crcTestBS w 
@@ -37,14 +38,13 @@ opCode17 port usr = do
 
 opCode0 port usr = do
   bs <- sndRcvPort port (usr ++ [1,0,0,2,0,255])
-  s <- openSerial port defaultSerialSettings { commSpeed = CS9600 }
+  s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
   bs1 <- recvAllBytes s 255
-  print $ showInt <$> (BS.unpack bs) <*> [""]
-  print $ showInt <$> (BS.unpack bs1) <*> [""]
+  print $ showHex <$> (BS.unpack bs) <*> [""]
   closeSerial s
 
 sndRcvPort port str = do
-  s <- openSerial port defaultSerialSettings { commSpeed = CS9600 }
+  s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
   send s $ BS.append (BS.pack str)(lzyBSto16BScrc (pack8to16 $ str))  
   bs <- recvAllBytes s 255 
   let returnCRC = lzyBSto16BScrc $ pack8to16 $ BS.unpack $ bs  
@@ -74,7 +74,6 @@ data PortBytes = PortBytes { pbByteString :: !BS.ByteString,
                              pbSerialPort :: !SerialPort,
                              pbByteRead   :: !Int
                            } 
-
 
 -- _pbBytes :: Lens' (PortBytes) BS.ByteString 
 _pbBytes :: (Functor f) => (BS.ByteString -> f BS.ByteString) -> PortBytes -> f (PortBytes)
