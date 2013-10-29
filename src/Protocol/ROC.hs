@@ -17,41 +17,71 @@ import Control.Lens
 import Control.Lens.Lens
 import Control.Lens.Getter
 import Control.Monad.Trans.State.Strict
-import Protocol.ROC.PointTypes
+--import Protocol.ROC.PointTypes
 
-crcTestBS :: Word8 -> Bool
-crcTestBS w 
-  |w == 0 = True
-  |otherwise = False
+--crcTestBS :: Word8 -> Bool
+--crcTestBS w 
+--  |w == 0 = True
+--  |otherwise = False
 
-opCode7 port usr = do
-  bs <- sndRcvPort port (usr ++ [1,0,7,0])
-  print $ showInt <$> BS.unpack bs <*> [""]  
- 
-opCode17 port usr = do
-  bs <- sndRcvPort port (usr ++ [1,0,17,5,76,79,73,232,3])
-  print $ showInt <$> BS.unpack bs <*> [""]
---  print $ BS.unpack.LB.toStrict.toLazyByteString.string7 $ username
---  let code7list = [7,0] :: [Word8]
---  let bytestr = sndRcvPort port ((usr ++ dest) ++ code7list)
---  print $ BS.index bytestr 4  
 
 opCode0 port usr = do
-  bs <- sndRcvPort port (usr ++ [1,0,0,2,0,255])
-  s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
-  bs1 <- recvAllBytes s 255
-  print $ showHex <$> (BS.unpack bs) <*> [""]
-  closeSerial s
+  sendPort port (usr ++ [1,0,0,2,0,255])
+  receivebs <- recievePort port (usr ++ [1,0,0,2,0,255])
+  let wordList = BS.unpack receivebs
+  print $ showInt <$> wordList <*> [""]
 
-sndRcvPort port str = do
+  let numberDI = BS.head (BS.drop 6 receivebs)
+  let numberTDI = BS.head (BS.drop 7 receivebs) 
+  let numberAI = BS.head (BS.drop 8 receivebs)
+  let numberMeterRuns = BS.head (BS.drop 9 receivebs) 
+  let numberPulseInputs = BS.head (BS.drop 10 receivebs)
+  let numberPIDs =  BS.head (BS.drop 12 receivebs)
+  let numberTanks =  BS.head (BS.drop 13 receivebs)
+  let numberAO = BS.head (BS.drop 14 receivebs) 
+  let numberTDO = BS.head (BS.drop 15 receivebs) 
+  let numberDO = BS.head (BS.drop 16 receivebs) 
+--  let alarmPointer =  (BS.append (BS.singleton $ BS.head $ BS.take 17 receivebs) (BS.singleton $ BS.head $ BS.take 18 receivebs))
+  print $ numberDI
+  print $ numberTDI
+  print $ numberAI
+  print $ numberMeterRuns
+  print $ numberPulseInputs
+  print $ numberPIDs
+  print $ numberTanks
+  print $ numberAO
+  print $ numberTDO
+  print $ numberDO
+--  print $ alarmPointer
+
+opCode7 port usr = do
+  sendPort port (usr ++ [1,0,7,0])
+  receivebs <- recievePort port (usr ++ [1,0,7,0]) 
+  print $ showInt <$> BS.unpack receivebs <*> [""]  
+ 
+opCode17 port usr = do
+  sendPort port (usr ++ [1,0,17,5,76,79,73,232,3])
+  receivebs <- recievePort port (usr ++ [1,0,17,5,76,79,73,232,3])
+  print $ showInt <$> BS.unpack receivebs <*> [""]
+--  print $ BS.unpack.LB.toStrict.toLazyByteString.string7 $ username
+
+opCode167 port usr = do
+  sendPort port (usr ++ [1,0,167,4,1,18,23,0])
+  receivebs <- recievePort port (usr ++ [1,0,167,4,1,18,23,0])
+  print $ showInt <$> BS.unpack receivebs <*> [""]
+
+sendPort port str = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
   send s $ BS.append (BS.pack str)(lzyBSto16BScrc (pack8to16 $ str))  
-  bs <- recvAllBytes s 255 
-  let returnCRC = lzyBSto16BScrc $ pack8to16 $ BS.unpack $ bs  
-  let pulledCRC = BS.reverse.BS.take 2 $ BS.reverse bs  
+
+recievePort port str = do
+  s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
+  receivebs <- recvAllBytes s 255 
+--  let returnCRC = lzyBSto16BScrc $ pack8to16 $ BS.unpack $ receivebs  
+--  let pulledCRC = BS.reverse.BS.take 2 $ BS.reverse receivebs  
 --  print $ BS.all crcTestBS returnCRC 
   closeSerial s
-  return bs
+  return receivebs
 
 bsEmpty :: BS.ByteString
 bsEmpty = ""

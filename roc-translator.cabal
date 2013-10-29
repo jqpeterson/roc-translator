@@ -14,7 +14,7 @@ Library
   HS-Source-Dirs:       src
   GHC-Options:          -Wall
   Exposed-Modules:      Protocol.ROC
-                        Protocol.ROC.PointTypes
+--                       Protocol.ROC.PointTypes
   Other-Modules:        Protocol.ROC.Internal
   Build-Depends:        base >= 4 && < 5
                         ,crc-fast == 0.1.0 
