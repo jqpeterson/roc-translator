@@ -14,7 +14,7 @@ Library
   HS-Source-Dirs:       src
   GHC-Options:          -Wall
   Exposed-Modules:      Protocol.ROC
---                       Protocol.ROC.PointTypes
+                        Protocol.ROC.PointTypes
   Other-Modules:        Protocol.ROC.Internal
   Build-Depends:        base >= 4 && < 5
                         ,crc-fast == 0.1.0 
@@ -22,7 +22,7 @@ Library
                        , transformers >= 0.3.0.0 && < 0.4.0.0
                        , bytestring >= 0.10.4.0 && < 0.10.4.1
                        , lens       >= 3.10 && < 4
-
+                       , binary
                        , crc16-table == 0.1
 Test-Suite spec
   Type:                 exitcode-stdio-1.0

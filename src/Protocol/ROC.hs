@@ -17,7 +17,7 @@ import Control.Lens
 import Control.Lens.Lens
 import Control.Lens.Getter
 import Control.Monad.Trans.State.Strict
---import Protocol.ROC.PointTypes
+import Protocol.ROC.PointTypes
 
 --crcTestBS :: Word8 -> Bool
 --crcTestBS w 
@@ -75,14 +75,16 @@ opCode17 port usr = do
 
 opCode167 port usr = do
   sendPort port (usr ++ [1,0,167,4,1,18,23,0])
-  receivebs <- recievePort port (usr ++ [1,0,167,4,1,18,23,0])
-  print $ showInt <$> BS.unpack receivebs <*> [""]
+  receivebs <- recievePort port
+    
+  return $ fetchPointType receivebs
+--  print $ showInt <$> BS.unpack receivebs <*> [""]
 
 sendPort port str = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
   send s $ BS.append (BS.pack str)(lzyBSto16BScrc (pack8to16 $ str))  
 
-recievePort port str = do
+recievePort port = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
   receivebs <- recvAllBytes s 255 
 --  let returnCRC = lzyBSto16BScrc $ pack8to16 $ BS.unpack $ receivebs  
