@@ -31,17 +31,22 @@ opCode0 port usr = do
   let wordList = BS.unpack receivebs
   print $ showInt <$> wordList <*> [""]
 
-  let numberDI = BS.head (BS.drop 6 receivebs)
+  let numberDI = fromEnum (BS.head (BS.drop 6 receivebs))
   let numberTDI = BS.head (BS.drop 7 receivebs) 
   let numberAI = BS.head (BS.drop 8 receivebs)
   let numberMeterRuns = BS.head (BS.drop 9 receivebs) 
   let numberPulseInputs = BS.head (BS.drop 10 receivebs)
-  let numberPIDs =  BS.head (BS.drop 12 receivebs)
-  let numberTanks =  BS.head (BS.drop 13 receivebs)
-  let numberAO = BS.head (BS.drop 14 receivebs) 
-  let numberTDO = BS.head (BS.drop 15 receivebs) 
-  let numberDO = BS.head (BS.drop 16 receivebs) 
---  let alarmPointer =  (BS.append (BS.singleton $ BS.head $ BS.take 17 receivebs) (BS.singleton $ BS.head $ BS.take 18 receivebs))
+  let numberPIDs =  BS.head (BS.drop 11 receivebs)
+  let numberTanks =  BS.head (BS.drop 12 receivebs)
+  let numberAO = BS.head (BS.drop 13 receivebs) 
+  let numberTDO = BS.head (BS.drop 14 receivebs) 
+  let numberDO = BS.head (BS.drop 15 receivebs) 
+  let alarmPointerHigh = BS.head (BS.drop 16 receivebs)
+  let alarmPointerLow = BS.head (BS.drop 17 receivebs)
+  let eventPointer = BS.append (BS.singleton (BS.head $ BS.drop 18 receivebs)) (BS.singleton (BS.head $ BS.drop 19 receivebs))
+  let diagnostic = BS.append (BS.append (BS.singleton (BS.head $ BS.drop 22 receivebs)) (BS.singleton (BS.head $ BS.drop 23 receivebs))) (BS.append (BS.singleton (BS.head $ BS.drop 24 receivebs)) (BS.singleton (BS.head $ BS.drop 25 receivebs)))
+
+
   print $ numberDI
   print $ numberTDI
   print $ numberAI
@@ -52,7 +57,10 @@ opCode0 port usr = do
   print $ numberAO
   print $ numberTDO
   print $ numberDO
---  print $ alarmPointer
+  print $ alarmPointerHigh
+  print $ alarmPointerLow
+  print $ eventPointer
+  print $ diagnostic 
 
 opCode7 port usr = do
   sendPort port (usr ++ [1,0,7,0])
