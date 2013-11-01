@@ -37,7 +37,6 @@ opCode0 cfg = do
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
   
-  
   sendPort port (rocAddress ++ hostAddress ++ [0,2,0,255])
   receivebs <- receivePort port
   print $ showInt <$> BS.unpack receivebs <*> [""]
@@ -82,6 +81,8 @@ opCode17 cfg = do
   print $ showInt <$> BS.unpack receivebs <*> [""]
 
 
+
+
 opCode167 cfg = do
   
   let port = rocConfigPort cfg
@@ -107,8 +108,10 @@ sendPort port str = do
 
 receivePort port = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
-  receivebs <- recvAllBytes s 255 
-  closeSerial s  
+  receivebs <- recvAllBytes s 255
+  closeSerial s
+  print $ BS.index receivebs 5
+--  when ((crcCheck receivebs) & (BS. ) 
   return receivebs
   
 crcCheck :: BS.ByteString -> Bool
