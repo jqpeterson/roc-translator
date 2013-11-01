@@ -78,7 +78,7 @@ opCode167 cfg ptid = do
       
   sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,18,18,0])
   receivebs <- receivePort port
-  print $ showInt <$> BS.unpack receivebs <*> [""]
+  print $ showHex <$> BS.unpack receivebs <*> [""]
   let dataBytes = BS.drop 10 receivebs
   fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
   print fetchedPointType
