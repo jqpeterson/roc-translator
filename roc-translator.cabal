@@ -31,6 +31,7 @@ Test-Suite spec
   Hs-Source-Dirs:       test
   Ghc-Options:          -Wall
   Main-Is:              Spec.hs
+  Other-Modules:        Protocol.FloatSpec
   Build-Depends:        base
                       , hspec
 

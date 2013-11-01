@@ -1,5 +1,6 @@
 module Protocol.ROCSpec (main, spec) where
 
+import Protocol.FloatSpec
 import Test.Hspec
 
 main :: IO ()
@@ -10,3 +11,5 @@ spec = do
   describe "someFunction" $ do
     it "should work fine" $ do
       True `shouldBe` False
+
+
