@@ -14,6 +14,7 @@ import Control.Lens
 import Control.Lens.Lens
 import Control.Lens.Getter
 import Protocol.ROC.PointTypes
+import Protocol.ROC.PointTypes.PointType1 as PT1
 import Data.Binary.Get
 
 
@@ -23,7 +24,6 @@ import Data.Binary.Get
 --import Control.Monad.IO.Class
 --import Data.Bits
 import Numeric
-import Data.Char
 -----------------------------------------
 
 type RocAddress = [Word8]
@@ -32,16 +32,14 @@ data RocConfig = RocConfig { rocConfigPort :: FilePath
                              ,rocConfigRocAddress :: RocAddress
                              ,rocConfigHostAddress :: RocAddress
                              } deriving (Eq,Read,Show)
-letssee :: Char -> Word8
-letssee x = fromIntegral x
-
+                                        
 crcTestBS :: Word8 -> Bool
 crcTestBS w 
   |w == 0 = True
   |otherwise = False
 
 opCode0 cfg = do
-  
+  opCode17 cfg
   let port = rocConfigPort cfg
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
@@ -51,7 +49,7 @@ opCode0 cfg = do
   print $ showInt <$> BS.unpack receivebs <*> [""]
 
 opCode7 cfg = do
-  
+  opCode17 cfg
   let port = rocConfigPort cfg
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
@@ -61,35 +59,30 @@ opCode7 cfg = do
   print $ showInt <$> BS.unpack receivebs <*> [""]  
  
 
---opCode17 cfg login pass = do
---  
---  let port = rocConfigPort cfg
---      hostAddress = rocConfigHostAddress cfg
---      rocAddress = rocConfigRocAddress cfg
---      login = 
---  sendPort port (rocAddress ++ hostAddress ++ [17,5] ++ login ++ pass)
---  receivebs <- receivePort port
---  print $ showInt <$> BS.unpack receivebs <*> [""]
-
-
-
-opCode167 cfg = do
+opCode17 cfg = do
   
   let port = rocConfigPort cfg
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
       
-  sendPort port (rocAddress ++ hostAddress ++ [167,4,1,17,23,0])
+  sendPort port (rocAddress ++ hostAddress ++ [17,5,76,79,73,232,3])
+  receivebs <- receivePort port
+  print $ showInt <$> BS.unpack receivebs <*> [""]
+
+opCode167 cfg ptid = do
+  opCode17 cfg
+  
+  let port = rocConfigPort cfg
+      hostAddress = rocConfigHostAddress cfg
+      rocAddress = rocConfigRocAddress cfg
+      
+  sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,18,18,0])
   receivebs <- receivePort port
   print $ showInt <$> BS.unpack receivebs <*> [""]
   let dataBytes = BS.drop 10 receivebs
-  let dataBytesTest = BS.drop 54 receivebs    
-  (Done _ n _ ) <- return $ fetchPointTypeTest (LB.fromStrict dataBytesTest)    
---  debugDecoderPointType fetchedPointTypeTest
-  print n
-  fetchedPointType <- return $ fetchPointType (LB.fromStrict dataBytes)
-  debugDecoderPointType fetchedPointType 
-  
+  fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
+  print fetchedPointType
+--  debugDecoderPointType fetchedPointType 
 
 sendPort port str = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
@@ -100,7 +93,7 @@ receivePort port = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
   receivebs <- recvAllBytes s 255
   closeSerial s
-  when ((not $ crcCheck receivebs) || (BS.index receivebs 4 == 255)) (print "Failed")
+--  when ((not $ crcCheck receivebs) || (BS.index receivebs 4 == 255)) (print "Failed")
   return receivebs
   
 crcCheck :: BS.ByteString -> Bool
