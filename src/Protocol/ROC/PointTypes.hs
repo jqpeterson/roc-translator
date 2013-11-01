@@ -14,7 +14,7 @@ import Data.Int
 import Data.Binary.Get
 import Numeric
 import Control.Applicative
-
+import Protocol.ROC.Float
 data PointTypeTest = PointTypeTest { 
   pointTypeTestLowRead :: !PointTypeTestLowRead
 }
@@ -35,14 +35,14 @@ data PointType1 = PointType1 {
 ,pointType1ScanPeriod           :: !PointType1ScanPeriod                   
 ,pointType1LowReading           :: !PointType1LowReading                   
 ,pointType1HighReading          :: !PointType1HighReading                   
---,pointType1LowAlarm             :: !PointType1LowAlarm                   
---,pointType1HighAlarm            :: !PointType1HighAlarm                   
---,pointType1LowLowAlarm          :: !PointType1LowLowAlarm                   
---,pointType1HiHiAlarm            :: !PointType1HiHiAlarm                   
---,pointType1RateAlarm            :: !PointType1RateAlarm                   
---,pointType1AlarmDeadband        :: !PointType1AlarmDeadband                   
---,pointType1EUValue              :: !PointType1EUValue                   
---,pointType1TDICount             :: !PointType1TDICount                    
+,pointType1LowAlarm             :: !PointType1LowAlarm                   
+,pointType1HighAlarm            :: !PointType1HighAlarm                   
+,pointType1LowLowAlarm          :: !PointType1LowLowAlarm                   
+,pointType1HiHiAlarm            :: !PointType1HiHiAlarm                   
+,pointType1RateAlarm            :: !PointType1RateAlarm                   
+,pointType1AlarmDeadband        :: !PointType1AlarmDeadband                   
+,pointType1EUValue              :: !PointType1EUValue                   
+,pointType1TDICount             :: !PointType1TDICount                    
 } deriving (Read,Eq, Show, Generic)                       
 
 type PointTypeTestLowRead = Float
@@ -62,14 +62,14 @@ type PointType1Units                 = BS.ByteString
 type PointType1ScanPeriod            = Word16
 type PointType1LowReading            = Float
 type PointType1HighReading           = Float
---type PointType1LowAlarm              = Float
---type PointType1HighAlarm             = Float
---type PointType1LowLowAlarm           = Float
---type PointType1HiHiAlarm             = Float
---type PointType1RateAlarm             = Float
---type PointType1AlarmDeadband         = Float
---type PointType1EUValue               = Float
---type PointType1TDICount              = Word16
+type PointType1LowAlarm              = Float
+type PointType1HighAlarm             = Float
+type PointType1LowLowAlarm           = Float
+type PointType1HiHiAlarm             = Float
+type PointType1RateAlarm             = Float
+type PointType1AlarmDeadband         = Float
+type PointType1EUValue               = Float
+type PointType1TDICount              = Word16
                        
 
 anyButNull :: Get Bool 
@@ -113,18 +113,21 @@ pointType1Parser = do
   maxpulsewidth <- getWord16le
   units <- getByteString 10
   scanPeriod <- getWord16le
-  lowReading <- get
-  highReading <- get
---  lowAlarm <- get
---  highAlarm <- get
---  lowlowAlarm <- get
---  highhighAlarm <- get
---  rateAlarm <- get
---  alarmDeadband <- get
---  euValue <- get
---  tdiCount <- getWord16le
+  lowReading <- getIeeeFloat32
+  highReading <- getIeeeFloat32
+  lowAlarm <- getIeeeFloat32
+  highAlarm <- getIeeeFloat32
+  lowlowAlarm <- getIeeeFloat32
+  highhighAlarm <- getIeeeFloat32
+  rateAlarm <- getIeeeFloat32
+  alarmDeadband <- getIeeeFloat32
+  euValue <- getIeeeFloat32
+  tdiCount <- getWord16le
   
   return $ PointType1 id fltr sts cfg alarmcode accumulatedvalue onCounter offCounter pulseWidth0 pulseWidth100 maxpulsewidth units scanPeriod lowReading highReading
+                   lowAlarm highAlarm lowlowAlarm highhighAlarm rateAlarm alarmDeadband euValue tdiCount
+
+
   
 --    return $ PointType1 id fltr sts cfg alarmcode accumulatedvalue onCounter offCounter pulseWidth0 pulseWidth100 maxpulsewidth units scanPeriod lowReading highReading lowAlarm highAlarm lowlowAlarm highhighAlarm rateAlarm alarmDeadband euValue tdiCount
 

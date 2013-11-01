@@ -16,6 +16,7 @@ Library
   Exposed-Modules:      Protocol.ROC
                         Protocol.ROC.PointTypes
   Other-Modules:        Protocol.ROC.Internal
+                        Protocol.ROC.Float
   Build-Depends:        base >= 4 && < 5
                         ,crc-fast == 0.1.0 
                        , serialport >= 0.4.7 && < 0.4.8
