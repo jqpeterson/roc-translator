@@ -30,6 +30,8 @@ are returned in the following order:
      LSB                        LSB + 1                MSB -1                    MSB
 
 
+
+
 x0 => Real Encoding =>   mmmmmmmm | mmmmmmmm | emmmmmmm | seeeeeee  ByteString
 e1 =  0X00,0x87 &  x0     =>   00000000 | 00000000 | e0000000 | 0eeeeeee  
 m1 =  0xFF,0x08 &  x0     =>   mmmmmmmm | mmmmmmmm | 0mmmmmmm | s0000000
@@ -81,35 +83,41 @@ reorderExpBits f = let e           = xBytesMask .&.f
                        expLowBits  = byte2Mask .&. e -- => 00000000 | 00000000 | e0000000 | 00000000
                        swapBytes   = (rShiftByte expLowBits 1) .|. (lShiftByte expHighBits 1) -- => 00000000 | 00000000 | 0eeeeeee | e0000000 
                        placeBytes  = fromIntegral (rShift swapBytes 7)  -- => 00000000 | 000000000 | 00000000 | eeeeeeee
-                   in  placeBytes - (127+23)
+                   in  placeBytes 
 
-calculateExponentBits :: Word32 -> Int32
+calculateExponentBits :: (Integral a )=> a-> Int32
 calculateExponentBits x = (fromIntegral x) - (127+23)
 
 
-byte3Mask :: Word32
-byte3Mask   = 0xF000 
+byte3Mask :: Word32 
+byte3Mask   = 0xFF000000
 
-byte2Mask :: Word32
-byte2Mask   = 0x0F00 
+byte2Mask :: Word32 
+byte2Mask   = 0x00FF0000
 
 byte1Mask :: Word32
-byte1Mask   = 0x00F0 
+byte1Mask   = 0x0000FF00
 
 byte0Mask :: Word32
-byte0Mask   = 0x000F 
+byte0Mask   = 0x000000FF
 
+
+-- |Eponent Bytes
 xBytesMask :: Word32
-xBytesMask  = 0x0087
+xBytesMask  = 0x0000807F
+
+testXBytesMask :: Bool
+testXBytesMask = (xBytesMask .&. 0xFFFFFFFF ) == 0x0000807F
+-- |Mantessa Bytes
 
 msBytesMask :: Word32 
-msBytesMask = 0xFF08 
+msBytesMask = 0xFFFF7F00 
 
 
 
 rocFloatToFloat :: Word32 -> Float
 rocFloatToFloat f = let mantessa = fromIntegral (reorderMbits f )  
-                        e = fromIntegral (reorderExpBits f)
+                        e = fromIntegral (calculateExponentBits.reorderExpBits $ f)
                     in encodeFloat mantessa e 
   
 rShiftByte :: Data.Bits.Bits a => a -> Int -> a

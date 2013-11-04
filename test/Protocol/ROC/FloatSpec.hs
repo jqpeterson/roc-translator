@@ -28,3 +28,8 @@ spec = do
   describe "calculateExponentBits" $ do
     it "should change 0x85 into -17" $ do
       (calculateExponentBits 0x85) == (-17) `shouldBe` True
+  describe "test xBytesMask" $ do
+    it "should grab all exponent Bits from a RockFloat and return them" $ do
+      testXBytesMask `shouldBe` True
+
+
