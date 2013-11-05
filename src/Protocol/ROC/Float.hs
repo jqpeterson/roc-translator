@@ -72,22 +72,31 @@ reorderMbits f = let m         = msBytesMask .&. f  -- mmmmmmmm | mmmmmmmm | 0mm
                      mPlaced   = rShiftByte mOrdered 1 ---- 00000000 | 0mmmmmmm | mmmmmmmm | mmmmmmmm 
                      sBit      = testBit m 7
                  in case sBit of  --Check if signed mantessa
-                      True -> fromIntegral (0xF800 .|. mPlaced) 
+                      True -> fromIntegral (0xFF800000 .|. mPlaced) -- add in the signed ones compliment bits
                       False -> fromIntegral (mPlaced)
                      
 
 -- | in m * 2^(e) e are the Exp bits                        
 reorderExpBits :: Word32 -> Int32
 reorderExpBits f = let e           = xBytesMask .&.f
-                       expHighBits = byte1Mask .&. e -- => 00000000 | 00000000 | 00000000 | 0eeeeeee  
-                       expLowBits  = byte2Mask .&. e -- => 00000000 | 00000000 | e0000000 | 00000000
+                       expHighBits = byte0Mask .&. e -- => 00000000 | 00000000 | 00000000 | 0eeeeeee  
+                       expLowBits  = byte1Mask .&. e -- => 00000000 | 00000000 | e0000000 | 00000000
                        swapBytes   = (rShiftByte expLowBits 1) .|. (lShiftByte expHighBits 1) -- => 00000000 | 00000000 | 0eeeeeee | e0000000 
                        placeBytes  = fromIntegral (rShift swapBytes 7)  -- => 00000000 | 000000000 | 00000000 | eeeeeeee
                    in  placeBytes 
 
+
 calculateExponentBits :: (Integral a )=> a-> Int32
 calculateExponentBits x = (fromIntegral x) - (127+23)
 
+-- | The mantessa is traditionally represented as a decimal number
+-- in formulae but that makes no sense in fixed point rep. 
+-- the 1.xxxx the mantessa is 23 bits of xxx  
+-- the 1 is tached on to the front as the 24th bit but it isn't the sign
+-- that is why the sign has to be coded separately
+
+calculateMantessaBit :: (Integral a) => a -> Int32 
+calculateMantessaBit x = (fromIntegral x) `xor`0x00800000
 
 byte3Mask :: Word32 
 byte3Mask   = 0xFF000000
@@ -111,14 +120,16 @@ testXBytesMask = (xBytesMask .&. 0xFFFFFFFF ) == 0x0000807F
 -- |Mantessa Bytes
 
 msBytesMask :: Word32 
-msBytesMask = 0xFFFF7F00 
+msBytesMask = 0xFFFF7F80 
+
 
 
 
 rocFloatToFloat :: Word32 -> Float
-rocFloatToFloat f = let mantessa = fromIntegral (reorderMbits f )  
+rocFloatToFloat f = let mantessa = fromIntegral (calculateMantessaBit.reorderMbits $ f )  
                         e = fromIntegral (calculateExponentBits.reorderExpBits $ f)
                     in encodeFloat mantessa e 
+
   
 rShiftByte :: Data.Bits.Bits a => a -> Int -> a
 rShiftByte x n = shiftR x (8*n)
@@ -135,4 +146,6 @@ getIeeeFloat32 :: Get Float
 getIeeeFloat32 = do 
   raw <- getWord32host
   return $ rocFloatToFloat raw
+
   
+
