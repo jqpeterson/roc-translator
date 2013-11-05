@@ -18,16 +18,23 @@ import Control.Applicative
 import Protocol.ROC.Float
 import Protocol.ROC.PointTypes.PointType1 as PointTypes
 import Protocol.ROC.PointTypes.PointType2 as PointTypes
+import Protocol.ROC.PointTypes.PointType3 as PointTYpes
+import Protocol.ROC.PointTypes.PointType4 as PointTYpes
 
-data PointTypes a = PTID1 (Either a PointType1) | PTID2 (Either a PointType2) 
+data PointTypes a = PTID1 (Either a PointType1) | PTID2 (Either a PointType2) | PTID3 (Either a PointType3) | PTID4 (Either a PointType4)
           deriving (Read,Eq,Show)
                    
 pt1 = PTID1 $ Left ()
 pt2 = PTID2 $ Left ()                   
+pt3 = PTID3 $ Left ()
+pt4 = PTID4 $ Left ()
 
 decodePTID :: PointTypes a -> Word8
 decodePTID (PTID1 _) = 0x01
 decodePTID (PTID2 _) = 0x02
+decodePTID (PTID3 _) = 0x03
+decodePTID (PTID4 _) = 0x04
+
 --------------------------------------------------
 --data PointTypeTest = PointTypeTest { 
 --pointTypeTestLowRead :: !PointTypeTestLowRead
@@ -44,7 +51,8 @@ decodePTID (PTID2 _) = 0x02
 fetchPointType :: PointTypes a -> LB.ByteString -> PointTypes LB.ByteString 
 fetchPointType  (PTID1 _ ) bs = PTID1 $ decodeToEither $ runGetIncremental pointType1Parser `pushChunks` bs 
 fetchPointType  (PTID2 _ ) bs = PTID2 $ decodeToEither $ runGetIncremental pointType2Parser `pushChunks` bs 
-  
+fetchPointType  (PTID3 _ ) bs = PTID3 $ decodeToEither $ runGetIncremental pointType3Parser `pushChunks` bs   
+fetchPointType  (PTID4 _ ) bs = PTID4 $ decodeToEither $ runGetIncremental pointType4Parser `pushChunks` bs   
 
 decodeToEither :: (Show a) => Decoder a -> Either LB.ByteString a
 decodeToEither (Fail _ _ s) = Left $ C8.append "decoder Failed with"  (C8.pack s)

@@ -64,8 +64,8 @@ anyButNull = do
     test :: Word8 -> Bool 
     test x = (fromIntegral x) == 1
 
-int16 :: Get Int16
-int16 = do
+getInt16 :: Get Int16
+getInt16 = do
   x <- getWord16le
   return $ fromIntegral x
 
@@ -80,8 +80,8 @@ pointType2Parser = do
   accumulatedvalue <- getWord32le
   units <- getByteString 10
   cycleTime <- getWord16le 
-  count0 <- int16
-  count100 <- int16
+  count0 <- getInt16
+  count100 <- getInt16
   lowReading <- getIeeeFloat32
   highReading <- getIeeeFloat32
   euValue <- getIeeeFloat32
@@ -93,5 +93,4 @@ pointType2Parser = do
   return $ PointType2 id timeon spare sts cfg alarmCode accumulatedvalue units cycleTime count0 count100 lowReading highReading euValue alarmMode scanningMode manualState physicalState
 
 
---fetchPointType1 :: LB.ByteString -> Decoder PointType1 
---fetchPointType1 bs = runGetIncremental pointType1Parser `pushChunks` bs
+

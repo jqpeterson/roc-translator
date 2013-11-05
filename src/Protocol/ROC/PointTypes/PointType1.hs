@@ -75,8 +75,8 @@ anyButNull = do
     test :: Word8 -> Bool 
     test x = (fromIntegral x) == 1
 
-int16 :: Get Int16
-int16 = do
+getInt16 :: Get Int16
+getInt16 = do
   x <- getWord16le
   return $ fromIntegral x
 
@@ -90,8 +90,8 @@ pointType1Parser = do
   accumulatedvalue <- getWord32le
   onCounter <- getWord32le
   offCounter <- getWord32le
-  pulseWidth0 <- int16 
-  pulseWidth100 <- int16
+  pulseWidth0 <- getInt16 
+  pulseWidth100 <- getInt16
   maxpulsewidth <- getWord16le
   units <- getByteString 10
   scanPeriod <- getWord16le
