@@ -1,0 +1,11 @@
+dist
+cabal-dev
+*sandbox*
+*.*~
+*.o
+*.hi
+*.chi
+*.chs.h
+.virthualenv
+
+
