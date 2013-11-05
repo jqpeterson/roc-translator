@@ -144,7 +144,7 @@ lShift x n = shiftL x n
 
 getIeeeFloat32 :: Get Float
 getIeeeFloat32 = do 
-  raw <- getWord32host
+  raw <- getWord32be
   return $ rocFloatToFloat raw
 
   

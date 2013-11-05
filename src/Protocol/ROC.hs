@@ -76,7 +76,7 @@ opCode167 cfg ptid = do
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
       
-  sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,18,13,0])
+  sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,37,0])
   receivebs <- receivePort port
   print $ showHex <$> BS.unpack receivebs <*> [""]
   let dataBytes = BS.drop 10 receivebs
