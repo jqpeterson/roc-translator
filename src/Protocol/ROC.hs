@@ -14,7 +14,7 @@ import Control.Lens
 import Control.Lens.Lens
 import Control.Lens.Getter
 import Protocol.ROC.PointTypes
-import Protocol.ROC.PointTypes.PointType1 as PT1
+--import Protocol.ROC.PointTypes.PointType1 as PT1
 import Data.Binary.Get
 
 
@@ -76,7 +76,7 @@ opCode167 cfg ptid = do
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
       
-  sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,37,0])
+  sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,54,0])
   receivebs <- receivePort port
   print $ showHex <$> BS.unpack receivebs <*> [""]
   let dataBytes = BS.drop 10 receivebs

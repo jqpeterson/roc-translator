@@ -67,19 +67,6 @@ type PointType1EUValue               = Float
 type PointType1TDICount              = Word16
                        
 
-anyButNull :: Get Bool 
-anyButNull = do 
-  c <- getWord8
-  return $ test c 
-  where 
-    test :: Word8 -> Bool 
-    test x = (fromIntegral x) == 1
-
-getInt16 :: Get Int16
-getInt16 = do
-  x <- getWord16le
-  return $ fromIntegral x
-
 pointType1Parser :: Get PointType1 
 pointType1Parser = do 
   id <- getByteString 10 
@@ -110,5 +97,4 @@ pointType1Parser = do
                    lowAlarm highAlarm lowlowAlarm highhighAlarm rateAlarm alarmDeadband euValue tdiCount
 
 
---fetchPointType1 :: LB.ByteString -> Decoder PointType1 
---fetchPointType1 bs = runGetIncremental pointType1Parser `pushChunks` bs
+

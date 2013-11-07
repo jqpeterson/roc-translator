@@ -62,15 +62,15 @@ type PointType6PntTag                              = BS.ByteString
 type PointType6CtrlType                            = Word8
 type PointType6SwitchStatus                        = Word8
 type PointType6ActualLoopPeriod                    = Word16
-type PointType6PrimInputPnt                        = BS.ByteString
-type PointType6PrimOutputPIDOutput                 = BS.ByteString
+type PointType6PrimInputPnt                        = [Word8]
+type PointType6PrimOutputPIDOutput                 = [Word8]
 type PointType6PrimSwitchStpnt                     = Float
-type PointType6PrimSwitchProcVar                   = BS.ByteString
+type PointType6PrimSwitchProcVar                   = [Word8]
 type PointType6PrimSwitchMode                      = BS.ByteString
-type PointType6OvrdInputPnt                        = BS.ByteString
-type PointType6OvrdInputPntPID2ndOutput            = BS.ByteString
+type PointType6OvrdInputPnt                        = [Word8]
+type PointType6OvrdInputPntPID2ndOutput            = [Word8]
 type PointType6OvrdSwitchStpnt                     = Float
-type PointType6OvrdSwitchProcVar                   = BS.ByteString
+type PointType6OvrdSwitchProcVar                   = [Word8]
 type PointType6OvrdSwitchMode                      = BS.ByteString
 type PointType6PrimStpnt                           = Float
 type PointType6PrimStpntMinChangeMax               = Float
@@ -103,15 +103,15 @@ pointType6Parser = do
   ctrlType <- getWord8  
   switchStatus <- getWord8
   actualLoopPeriod <- getWord16le
-  primInputPnt <- getByteString 3
-  primOutputPIDOutput <- getByteString 3
+  primInputPnt <- getTLP
+  primOutputPIDOutput <- getTLP
   primSwitchStpnt <- getIeeeFloat32
-  primSwitchProcVar <- getByteString 3
+  primSwitchProcVar <- getTLP
   primSwitchMode <- getByteString 1
-  ovrdInputPnt <- getByteString 3
-  ovrdInputPntPID2ndOutput <- getByteString 3
+  ovrdInputPnt <- getTLP
+  ovrdInputPntPID2ndOutput <- getTLP
   ovrdSwitchStpnt <- getIeeeFloat32
-  ovrdSwitchProcVar <- getByteString 3
+  ovrdSwitchProcVar <- getTLP
   ovrdSwitchMode <- getByteString 1
   primStpnt <- getIeeeFloat32
   primStpntMinChangeMax <- getIeeeFloat32

@@ -48,20 +48,6 @@ type PointType4ManualEU                  = Float
 type PointType4PhysicalEU                = Float             
        
 
-anyButNull :: Get Bool 
-anyButNull = do 
-  c <- getWord8
-  return $ test c 
-  where 
-    test :: Word8 -> Bool 
-    test x = (fromIntegral x) == 1
-
-
-getInt16 :: Get Int16
-getInt16 = do
-  x <- getWord16le
-  return $ fromIntegral x
-
 pointType4Parser :: Get PointType4
 pointType4Parser = do 
   id <- getByteString 10

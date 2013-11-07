@@ -56,18 +56,6 @@ type PointType2ScanningMode          = Bool
 type PointType2ManualState           = Word8
 type PointType2PhysicalState         = Word8
 
-anyButNull :: Get Bool 
-anyButNull = do 
-  c <- getWord8
-  return $ test c 
-  where 
-    test :: Word8 -> Bool 
-    test x = (fromIntegral x) == 1
-
-getInt16 :: Get Int16
-getInt16 = do
-  x <- getWord16le
-  return $ fromIntegral x
 
 pointType2Parser :: Get PointType2
 pointType2Parser = do 

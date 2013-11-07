@@ -92,10 +92,6 @@ type PointType3Timer                            = Word16
 type PointType3CalibrationMode                  = Word8        
 type PointType3CablibrationType                 = Word8        
 
-getInt16 :: Get Int16
-getInt16 = do
-  x <- getWord16le
-  return $ fromIntegral x
 
 pointType3Parser :: Get PointType3
 pointType3Parser = do 
