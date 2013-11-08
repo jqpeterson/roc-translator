@@ -27,6 +27,7 @@ module Protocol.ROC.PointTypes (module PointTypes
                               -- ,pt21
                               -- ,pt22
                               -- ,pt23
+                               ,pt47
                                ) where
 
 import qualified Data.ByteString.Lazy as LB
@@ -60,6 +61,7 @@ import Protocol.ROC.PointTypes.PointType10 as PointTypes
 --import Protocol.ROC.PointTypes.PointType24 as PointTypes
 --import Protocol.ROC.PointTypes.PointType25 as PointTypes
 --import Protocol.ROC.PointTypes.PointType26 as PointTypes
+import Protocol.ROC.PointTypes.PointType47 as PointTypes
 
 data PointTypes a = PTID1 (Either a PointType1)
                   | PTID2 (Either a PointType2)
@@ -81,7 +83,8 @@ data PointTypes a = PTID1 (Either a PointType1)
 --                  | PTID18 (Either a PointType18)
 --                  | PTID19 (Either a PointType19)
 --                  | PTID20 (Either a PointType20)
---                  | PTID21 (Either a PointType21)                                      
+--                  | PTID21 (Either a PointType21)
+                  | PTID47 (Either a PointType47)                  
                   deriving (Read,Eq,Show)
 
 pt1 :: PointTypes () 
@@ -130,6 +133,8 @@ pt10 = PTID10 $ Left ()
 --pt22 = PTID22 $ Left ()
 --pt23 :: PointTypes () 
 --pt23 = PTID23 $ Left ()
+pt47 :: PointTypes () 
+pt47 = PTID47 $ Left ()
 
 decodePTID :: PointTypes a -> Word8
 decodePTID (PTID1 _) = 1
@@ -155,6 +160,8 @@ decodePTID (PTID10 _) = 10
 --decodePTID (PTID21 _) = 21
 --decodePTID (PTID22 _) = 22
 --decodePTID (PTID23 _) = 23
+decodePTID (PTID47 _) = 47
+
 -----------------------------------------------------------------------------------
 --data PointTypeTest = PointTypeTest { 
 --pointTypeTestLowRead :: !PointTypeTestLowRead
@@ -192,6 +199,7 @@ fetchPointType  (PTID10 _ ) bs = PTID10 $ decodeToEither $ runGetIncremental poi
 --fetchPointType  (PTID21 _ ) bs = PTID21 $ decodeToEither $ runGetIncremental pointType21Parser `pushChunks` bs  
 --fetchPointType  (PTID22 _ ) bs = PTID22 $ decodeToEither $ runGetIncremental pointType22Parser `pushChunks` bs  
 --fetchPointType  (PTID23 _ ) bs = PTID23 $ decodeToEither $ runGetIncremental pointType23Parser `pushChunks` bs  
+fetchPointType  (PTID47 _ ) bs = PTID47 $ decodeToEither $ runGetIncremental pointType47Parser `pushChunks` bs  
 
 decodeToEither :: (Show a) => Decoder a -> Either LB.ByteString a
 decodeToEither (Fail _ _ s) = Left $ C8.append "decoder Failed with"  (C8.pack s)
