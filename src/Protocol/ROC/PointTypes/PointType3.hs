@@ -5,16 +5,12 @@ module Protocol.ROC.PointTypes.PointType3 where
 
 import GHC.Generics
 import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as LB
-import qualified Data.ByteString.Lazy.Builder as LBB
 import Data.Word
 import Data.Binary
-import Data.Bool
 import Data.Int
 import Data.Binary.Get
-import Numeric
-import Control.Applicative
 import Protocol.ROC.Float
+import Protocol.ROC.PointTypes.Utils
 
 data PointType3 = PointType3 {
  pointType3PointTag                      :: !PointType3PointTag                       
@@ -95,7 +91,7 @@ type PointType3CablibrationType                 = Word8
 
 pointType3Parser :: Get PointType3
 pointType3Parser = do 
-  id <- getByteString 10 
+  pointId <- getByteString 10 
   timeon <- getWord16le
   scanPeriod <- getWord16le
   fltr <- getWord16le
@@ -132,6 +128,6 @@ pointType3Parser = do
   calibrationMode <- getWord8
   calibrationType <- getWord8
   
-  return $ PointType3 id timeon scanPeriod fltr adjustedDA0 adjustedDA100 lowReading highReading lowAlarm highAlarm lowLowAlarm highHighAlarm rateAlarm alarmDeadband filteredEU cfg alarmCode rawDAInput actualScanTime faultEUValue calibrated0ADValue calibratedMidpoint1ADValue calibratedMidpoint2ADValue calibratedMidpoint3ADValue calibratedSpanADValue calibrated0EUValue calibratedMidpoint1EUValue calibratedMidpoint2EUValue calibratedMidpoint3EUValue calibratedSpanEUValue offset calibrationSetEUValue manualEU timer calibrationMode calibrationType
+  return $ PointType3 pointId timeon scanPeriod fltr adjustedDA0 adjustedDA100 lowReading highReading lowAlarm highAlarm lowLowAlarm highHighAlarm rateAlarm alarmDeadband filteredEU cfg alarmCode rawDAInput actualScanTime faultEUValue calibrated0ADValue calibratedMidpoint1ADValue calibratedMidpoint2ADValue calibratedMidpoint3ADValue calibratedSpanADValue calibrated0EUValue calibratedMidpoint1EUValue calibratedMidpoint2EUValue calibratedMidpoint3EUValue calibratedSpanEUValue offset calibrationSetEUValue manualEU timer calibrationMode calibrationType
 
 

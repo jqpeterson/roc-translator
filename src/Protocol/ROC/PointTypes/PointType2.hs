@@ -5,16 +5,12 @@ module Protocol.ROC.PointTypes.PointType2 where
 
 import GHC.Generics
 import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as LB
-import qualified Data.ByteString.Lazy.Builder as LBB
 import Data.Word
 import Data.Binary
-import Data.Bool
 import Data.Int
 import Data.Binary.Get
-import Numeric
-import Control.Applicative
 import Protocol.ROC.Float
+import Protocol.ROC.PointTypes.Utils
 
 data PointType2 = PointType2 {
  pointType2PointTag            :: !PointType2PointTag       
@@ -59,7 +55,7 @@ type PointType2PhysicalState         = Word8
 
 pointType2Parser :: Get PointType2
 pointType2Parser = do 
-  id <- getByteString 10 
+  pointId <- getByteString 10 
   timeon <- getWord16le
   spare <- getWord8
   sts <- anyButNull
@@ -78,7 +74,7 @@ pointType2Parser = do
   manualState <- getWord8
   physicalState <- getWord8
   
-  return $ PointType2 id timeon spare sts cfg alarmCode accumulatedvalue units cycleTime count0 count100 lowReading highReading euValue alarmMode scanningMode manualState physicalState
+  return $ PointType2 pointId timeon spare sts cfg alarmCode accumulatedvalue units cycleTime count0 count100 lowReading highReading euValue alarmMode scanningMode manualState physicalState
 
 
 

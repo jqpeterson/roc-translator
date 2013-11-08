@@ -5,16 +5,12 @@ module Protocol.ROC.PointTypes.PointType1 where
 
 import GHC.Generics
 import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as LB
-import qualified Data.ByteString.Lazy.Builder as LBB
 import Data.Word
 import Data.Binary
-import Data.Bool
 import Data.Int
 import Data.Binary.Get
-import Numeric
-import Control.Applicative
 import Protocol.ROC.Float
+import Protocol.ROC.PointTypes.Utils
 
 data PointType1 = PointType1 {
  pointType1PointTag             :: !PointType1PointTag          
@@ -69,7 +65,7 @@ type PointType1TDICount              = Word16
 
 pointType1Parser :: Get PointType1 
 pointType1Parser = do 
-  id <- getByteString 10 
+  pointId <- getByteString 10 
   fltr <- getWord8
   sts <- anyButNull
   cfg <- getWord8
@@ -93,7 +89,7 @@ pointType1Parser = do
   euValue <- getIeeeFloat32
   tdiCount <- getWord16le
   
-  return $ PointType1 id fltr sts cfg alarmcode accumulatedvalue onCounter offCounter pulseWidth0 pulseWidth100 maxpulsewidth units scanPeriod lowReading highReading
+  return $ PointType1 pointId fltr sts cfg alarmcode accumulatedvalue onCounter offCounter pulseWidth0 pulseWidth100 maxpulsewidth units scanPeriod lowReading highReading
                    lowAlarm highAlarm lowlowAlarm highhighAlarm rateAlarm alarmDeadband euValue tdiCount
 
 

@@ -5,15 +5,9 @@ module Protocol.ROC.PointTypes.PointType5 where
 
 import GHC.Generics
 import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as LB
-import qualified Data.ByteString.Lazy.Builder as LBB
 import Data.Word
 import Data.Binary
-import Data.Bool
-import Data.Int
 import Data.Binary.Get
-import Numeric
-import Control.Applicative
 import Protocol.ROC.Float
 
 data PointType5 = PointType5 {
@@ -69,7 +63,7 @@ type PointType5FreqHertz                 = Float
 
 pointType5Parser :: Get PointType5
 pointType5Parser = do 
-  id <- getByteString 10
+  pointId <- getByteString 10
   units <- getByteString 10
   rateFlat <- getWord8
   ratePeriod <- getWord8
@@ -92,5 +86,5 @@ pointType5Parser = do
   pulsesForDay <- getWord32le
   freqHertz <- getIeeeFloat32
   
-  return $ PointType5 id units rateFlat ratePeriod filterTime scanPeriod conversionFactor lowAlarm highAlarm lowLowAlarm highHighAlarm rateAlarm alarmDeadband 
+  return $ PointType5 pointId units rateFlat ratePeriod filterTime scanPeriod conversionFactor lowAlarm highAlarm lowLowAlarm highHighAlarm rateAlarm alarmDeadband 
                    euValue modeCFG alarmCode accumulatedValue currentRates todaysTotal yesterdaysTotal pulsesForDay freqHertz

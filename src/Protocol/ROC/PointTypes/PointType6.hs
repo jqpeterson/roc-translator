@@ -5,16 +5,11 @@ module Protocol.ROC.PointTypes.PointType6 where
 
 import GHC.Generics
 import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as LB
-import qualified Data.ByteString.Lazy.Builder as LBB
 import Data.Word
 import Data.Binary
-import Data.Bool
-import Data.Int
 import Data.Binary.Get
-import Numeric
-import Control.Applicative
 import Protocol.ROC.Float
+import Protocol.ROC.PointTypes.Utils
 
 data PointType6 = PointType6 {
  pointType6PntTag                                  :: !PointType6PntTag                                      
@@ -99,7 +94,7 @@ type PointType6OvrdSwitchProcVarOvrdChangeOutput   = Float
 
 pointType6Parser :: Get PointType6 
 pointType6Parser = do 
-  id <- getByteString 10 
+  pointId <- getByteString 10 
   ctrlType <- getWord8  
   switchStatus <- getWord8
   actualLoopPeriod <- getWord16le
@@ -138,7 +133,7 @@ pointType6Parser = do
   ovrdSwitchProcVarOvrdChangeOutput <- getIeeeFloat32
   
   
-  return $ PointType6 id ctrlType switchStatus actualLoopPeriod primInputPnt primOutputPIDOutput primSwitchStpnt primSwitchProcVar primSwitchMode ovrdInputPnt ovrdInputPntPID2ndOutput 
+  return $ PointType6 pointId ctrlType switchStatus actualLoopPeriod primInputPnt primOutputPIDOutput primSwitchStpnt primSwitchProcVar primSwitchMode ovrdInputPnt ovrdInputPntPID2ndOutput 
                   ovrdSwitchStpnt ovrdSwitchProcVar ovrdSwitchMode primStpnt primStpntMinChangeMax primLoopPeriod primPropGain primResetIntegralGain primRateDerivativeGain primScaleFactor 
                   primIntegralDeadband primProcVar primOutputCurrentPIDOutput primSwitchProcVarPrimChangeOutput minCtrlTime ovrdStpnt ovrdStpntMinChangeMax ovrdLoopPeriod ovrdPropGain 
                   ovrdResetIntegralGain ovrdRateDerivativGain ovrdScaleFactor ovrdIntegralDeadband ovrdProcVar ovrdOutputCurrentPIDOutput ovrdSwitchProcVarOvrdChangeOutput 

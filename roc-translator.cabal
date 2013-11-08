@@ -16,7 +16,7 @@ Library
   Exposed-Modules:      Protocol.ROC
                         Protocol.ROC.PointTypes
                         Protocol.ROC.Float
-                        Protocol.ROC.PointTypes.PointType1
+                        Protocol.ROC.PointTypes.Utils
   Other-Modules:        Protocol.ROC.Internal
 
   Build-Depends:        base >= 4 && < 5

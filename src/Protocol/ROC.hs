@@ -2,20 +2,19 @@
 module Protocol.ROC where
 
 import Control.Applicative
-import Control.Monad
-import System.IO
+--import Control.Monad
+--import System.IO
 import System.Hardware.Serialport
 import Data.Word
 import qualified Data.ByteString as BS
 import Foreign.CRC
 import qualified Data.ByteString.Lazy as LB
 import Data.ByteString.Builder
-import Control.Lens
-import Control.Lens.Lens
-import Control.Lens.Getter
+--import Control.Lens
+--import Control.Lens.Lens
+--import Control.Lens.Getter
 import Protocol.ROC.PointTypes
---import Protocol.ROC.PointTypes.PointType1 as PT1
-import Data.Binary.Get
+--import Data.Binary.Get
 
 
 --imports for testing??
@@ -38,37 +37,40 @@ crcTestBS w
   |w == 0 = True
   |otherwise = False
 
+opCode0 :: RocConfig -> IO()
 opCode0 cfg = do
   opCode17 cfg
   let port = rocConfigPort cfg
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
       
-  sendPort port (rocAddress ++ hostAddress ++ [0,2,0,255])
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [0,2,0,255])
   receivebs <- receivePort port
   print $ showInt <$> BS.unpack receivebs <*> [""]
 
+opCode7 :: RocConfig -> IO()
 opCode7 cfg = do
   opCode17 cfg
   let port = rocConfigPort cfg
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
   
-  sendPort port (rocAddress ++ hostAddress ++ [7,0])
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [7,0])
   receivebs <- receivePort port 
   print $ showInt <$> BS.unpack receivebs <*> [""]  
  
-
+opCode17 :: RocConfig -> IO()
 opCode17 cfg = do
   
   let port = rocConfigPort cfg
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
       
-  sendPort port (rocAddress ++ hostAddress ++ [17,5,76,79,73,232,3])
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [17,5,76,79,73,232,3])
   receivebs <- receivePort port
   print $ showInt <$> BS.unpack receivebs <*> [""]
 
+--opCode167 :: forall a.  RocConfig -> Protocol.ROC.PointTypes.PointTypes a -> IO()
 opCode167 cfg ptid = do
   opCode17 cfg
   
@@ -76,7 +78,7 @@ opCode167 cfg ptid = do
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
       
-  sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,54,0])
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,21,0])
   receivebs <- receivePort port
   print $ showHex <$> BS.unpack receivebs <*> [""]
   let dataBytes = BS.drop 10 receivebs
@@ -84,11 +86,12 @@ opCode167 cfg ptid = do
   print fetchedPointType
 --  debugDecoderPointType fetchedPointType 
 
+sendPort :: FilePath -> [Word8] -> IO Int
 sendPort port str = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
   send s $ BS.append (BS.pack str)(lzyBSto16BScrc (pack8to16 $ str))  
 
-
+receivePort :: FilePath -> IO BS.ByteString
 receivePort port = do
   s <- openSerial port defaultSerialSettings { commSpeed = CS115200 }
   receivebs <- recvAllBytes s 255

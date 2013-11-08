@@ -5,16 +5,12 @@ module Protocol.ROC.PointTypes.PointType4 where
 
 import GHC.Generics
 import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as LB
-import qualified Data.ByteString.Lazy.Builder as LBB
 import Data.Word
 import Data.Binary
-import Data.Bool
 import Data.Int
 import Data.Binary.Get
-import Numeric
-import Control.Applicative
 import Protocol.ROC.Float
+import Protocol.ROC.PointTypes.Utils
 
 data PointType4 = PointType4 {
  pointType4PointTag                      :: !PointType4PointTag                       
@@ -50,7 +46,7 @@ type PointType4PhysicalEU                = Float
 
 pointType4Parser :: Get PointType4
 pointType4Parser = do 
-  id <- getByteString 10
+  pointId <- getByteString 10
   units <- getByteString 10
   adjustedDA0 <- getInt16
   adjustedDA100 <- getInt16
@@ -64,4 +60,4 @@ pointType4Parser = do
   manualEU <- getIeeeFloat32
   physicalEU <- getIeeeFloat32
   
-  return $ PointType4 id units adjustedDA0 adjustedDA100 lowReading highReading euValue modeCFG alarmCode rawDAOutput scanningMode manualEU physicalEU
+  return $ PointType4 pointId units adjustedDA0 adjustedDA100 lowReading highReading euValue modeCFG alarmCode rawDAOutput scanningMode manualEU physicalEU
