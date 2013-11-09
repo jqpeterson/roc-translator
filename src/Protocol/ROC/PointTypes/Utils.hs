@@ -28,5 +28,13 @@ getInt16 = do
   x <- getWord16le
   return $ fromIntegral x
 
-
-
+getTime :: Get [Word8]
+getTime = do  
+  second <- getWord8
+  minute <- getWord8
+  hour <- getWord8
+  day <- getWord8
+  month <- getWord8
+  year <- getWord8
+  let timeList = ([second] ++ [minute] ++ [hour] ++ [day] ++ [month] ++ [year])
+  return $ timeList
