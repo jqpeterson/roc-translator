@@ -201,22 +201,3 @@ pointType8Parser = do
     archiveType7 avgOrRateType7 ptTagTLP8 histLogPtNum8 archiveType8 avgOrRateType8 ptTagTLP9 histLogPtNum9 archiveType9 avgOrRateType9 ptTagTLP10 histLogPtNum10 archiveType10 
     avgOrRateType10 ptTagTLP11 histLogPtNum11 archiveType11 avgOrRateType11 ptTagTLP12 histLogPtNum12 archiveType12 avgOrRateType12 ptTagTLP13 histLogPtNum13 archiveType13 avgOrRateType13 
     ptTagTLP14 histLogPtNum14 archiveType14 avgOrRateType14 ptTagTLP15 histLogPtNum15 archiveType15 avgOrRateType15
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

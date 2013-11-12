@@ -70,6 +70,20 @@ opCode17 cfg = do
   receivebs <- receivePort port
   print $ showInt <$> BS.unpack receivebs <*> [""]
 
+--opCode165 :: RocConfig -> IO()
+--opCode165 cfg ptid = do
+--  opCode17 cfg
+--  let port = rocConfigPort cfg
+--      hostAddress = rocConfigHostAddress cfg
+--      rocAddress = rocConfigRocAddress cfg
+--  _ <- sendPort port (rocAddress ++ hostAddress ++ [165,4,0,0,0,0])
+--  receivebs <- receivePort port
+--  print $ showInt <$> BS.unpack receivebs <*> [""]    
+--  let dataBytes = BS.drop 10 $ BS.init $ BS.init receivebs
+--  print $ BS.length dataBytes      
+--  fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
+--  print fetchedPointType
+
 --opCode167 :: forall a.  RocConfig -> Protocol.ROC.PointTypes.PointTypes a -> IO()
 opCode167 cfg ptid = do
   opCode17 cfg
@@ -78,13 +92,13 @@ opCode167 cfg ptid = do
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
       
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,40,0])
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,15,0])
   receivebs <- receivePort port
---  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,16,59])
---  receivebs1 <- receivePort port
---  let dataBytes = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs) (BS.drop 10 receivebs1)
-  print $ showInt <$> BS.unpack receivebs <*> [""]
-  let dataBytes = BS.drop 10 receivebs
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,16,15])
+  receivebs1 <- receivePort port
+  let dataBytes = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs) (BS.init $ BS.init $ BS.drop 10 receivebs1)
+--  print $ showInt <$> BS.unpack receivebs <*> [""]
+--  let dataBytes = BS.drop 10 $ BS.init $ BS.init receivebs
   print $ BS.length dataBytes      
   fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
   print fetchedPointType
