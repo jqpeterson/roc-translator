@@ -92,13 +92,13 @@ opCode167 cfg ptid = do
       hostAddress = rocConfigHostAddress cfg
       rocAddress = rocConfigRocAddress cfg
       
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,15,0])
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,54,0])
   receivebs <- receivePort port
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,16,15])
-  receivebs1 <- receivePort port
-  let dataBytes = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs) (BS.init $ BS.init $ BS.drop 10 receivebs1)
---  print $ showInt <$> BS.unpack receivebs <*> [""]
---  let dataBytes = BS.drop 10 $ BS.init $ BS.init receivebs
+--  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,16,15])
+--  receivebs1 <- receivePort port
+--  let dataBytes = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs) (BS.init $ BS.init $ BS.drop 10 receivebs1)
+  print $ showInt <$> BS.unpack receivebs <*> [""]
+  let dataBytes = BS.drop 10 $ BS.init $ BS.init receivebs
   print $ BS.length dataBytes      
   fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
   print fetchedPointType

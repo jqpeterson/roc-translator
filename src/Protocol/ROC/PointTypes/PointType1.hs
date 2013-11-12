@@ -91,6 +91,3 @@ pointType1Parser = do
   
   return $ PointType1 pointId fltr sts cfg alarmcode accumulatedvalue onCounter offCounter pulseWidth0 pulseWidth100 maxpulsewidth units scanPeriod lowReading highReading
                    lowAlarm highAlarm lowlowAlarm highhighAlarm rateAlarm alarmDeadband euValue tdiCount
-
-
-
