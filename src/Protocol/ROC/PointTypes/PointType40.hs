@@ -7,7 +7,6 @@ import GHC.Generics
 import qualified Data.ByteString as BS
 import Data.Word
 import Data.Binary
-import Data.Int
 import Data.Binary.Get
 import Protocol.ROC.Float
 import Protocol.ROC.PointTypes.Utils

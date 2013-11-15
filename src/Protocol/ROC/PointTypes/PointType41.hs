@@ -7,7 +7,6 @@ import GHC.Generics
 import qualified Data.ByteString as BS
 import Data.Word
 import Data.Binary
-import Data.Int
 import Data.Binary.Get
 import Protocol.ROC.Float
 import Protocol.ROC.PointTypes.Utils
@@ -69,30 +68,30 @@ data PointType41 = PointType41 {
 ,pointType41RollUp10                      :: !PointType41RollUp10                         
 ,pointType41TLPParamArchived10            :: !PointType41TLPParamArchived10                           
 ,pointType41ConvRollUp10                  :: !PointType41ConvRollUp10                         
-,pointType41HistPnt11                     :: !PointType41HistPnt11                         
-,pointType41RollUp11                      :: !PointType41RollUp11                         
-,pointType41TLPParamArchived11            :: !PointType41TLPParamArchived11                         
-,pointType41ConvRollUp11                  :: !PointType41ConvRollUp11                         
-,pointType41HistPnt12                     :: !PointType41HistPnt12                         
-,pointType41RollUp12                      :: !PointType41RollUp12                         
-,pointType41TLPParamArchived12            :: !PointType41TLPParamArchived12                         
-,pointType41ConvRollUp12                  :: !PointType41ConvRollUp12                         
-,pointType41HistPnt13                     :: !PointType41HistPnt13                         
-,pointType41RollUp13                      :: !PointType41RollUp13                         
-,pointType41TLPParamArchived13            :: !PointType41TLPParamArchived13                         
-,pointType41ConvRollUp13                  :: !PointType41ConvRollUp13                         
-,pointType41HistPnt14                     :: !PointType41HistPnt14                         
-,pointType41RollUp14                      :: !PointType41RollUp14                         
-,pointType41TLPParamArchived14            :: !PointType41TLPParamArchived14                         
-,pointType41ConvRollUp14                  :: !PointType41ConvRollUp14                         
-,pointType41HistPnt15                     :: !PointType41HistPnt15                         
-,pointType41RollUp15                      :: !PointType41RollUp15                         
-,pointType41TLPParamArchived15            :: !PointType41TLPParamArchived15                         
-,pointType41ConvRollUp15                  :: !PointType41ConvRollUp15                         
-,pointType41HistPnt15                     :: !PointType41HistPnt15                                            
-,pointType41RollUp15                      :: !PointType41RollUp15                                             
-,pointType41TLPParamArchived15            :: !PointType41TLPParamArchived15                                   
-,pointType41ConvRollUp15                  :: !PointType41ConvRollUp15                                         
+--,pointType41HistPnt11                     :: !PointType41HistPnt11                         
+--,pointType41RollUp11                      :: !PointType41RollUp11                         
+--,pointType41TLPParamArchived11            :: !PointType41TLPParamArchived11                         
+--,pointType41ConvRollUp11                  :: !PointType41ConvRollUp11                         
+--,pointType41HistPnt12                     :: !PointType41HistPnt12                         
+--,pointType41RollUp12                      :: !PointType41RollUp12                         
+--,pointType41TLPParamArchived12            :: !PointType41TLPParamArchived12                         
+--,pointType41ConvRollUp12                  :: !PointType41ConvRollUp12                         
+--,pointType41HistPnt13                     :: !PointType41HistPnt13                         
+--,pointType41RollUp13                      :: !PointType41RollUp13                         
+--,pointType41TLPParamArchived13            :: !PointType41TLPParamArchived13                         
+--,pointType41ConvRollUp13                  :: !PointType41ConvRollUp13                         
+--,pointType41HistPnt14                     :: !PointType41HistPnt14                         
+--,pointType41RollUp14                      :: !PointType41RollUp14                         
+--,pointType41TLPParamArchived14            :: !PointType41TLPParamArchived14                         
+--,pointType41ConvRollUp14                  :: !PointType41ConvRollUp14                         
+--,pointType41HistPnt15                     :: !PointType41HistPnt15                         
+--,pointType41RollUp15                      :: !PointType41RollUp15                         
+--,pointType41TLPParamArchived15            :: !PointType41TLPParamArchived15                         
+--,pointType41ConvRollUp15                  :: !PointType41ConvRollUp15                         
+--,pointType41HistPnt16                     :: !PointType41HistPnt16                                            
+--,pointType41RollUp16                      :: !PointType41RollUp16                                             
+--,pointType41TLPParamArchived16            :: !PointType41TLPParamArchived16                                   
+--,pointType41ConvRollUp16                  :: !PointType41ConvRollUp16                                         
 
 } deriving (Read,Eq, Show, Generic)                       
 
@@ -151,30 +150,30 @@ type PointType41HistPnt10                = Word8
 type PointType41RollUp10                 = Word8                                  
 type PointType41TLPParamArchived10       = [Word8]                            
 type PointType41ConvRollUp10             = Float                                  
-type PointType41HistPnt11                = Word8                                  
-type PointType41RollUp11                 = Word8                                  
-type PointType41TLPParamArchived11       = [Word8]                                
-type PointType41ConvRollUp11             = Float                                  
-type PointType41HistPnt12                = Word8                                  
-type PointType41RollUp12                 = Word8                                  
-type PointType41TLPParamArchived12       = [Word8]                                
-type PointType41ConvRollUp12             = Float                                  
-type PointType41HistPnt13                = Word8                                  
-type PointType41RollUp13                 = Word8                                  
-type PointType41TLPParamArchived13       = [Word8]                               
-type PointType41ConvRollUp13             = Float                                  
-type PointType41HistPnt14                = Word8                                  
-type PointType41RollUp14                 = Word8                                  
-type PointType41TLPParamArchived14       = [Word8]                                
-type PointType41ConvRollUp14             = Float                                  
-type PointType41HistPnt15                = Word8                                 
-type PointType41RollUp15                 = Word8                                  
-type PointType41TLPParamArchived15       = [Word8]                                
-type PointType41ConvRollUp15             = Float                                  
-type PointType41HistPnt15                = Word8                                  
-type PointType41RollUp15                 = Word8                                  
-type PointType41TLPParamArchived15       = [Word8]                                
-type PointType41ConvRollUp15             = Float                                
+--type PointType41HistPnt11                = Word8                                  
+--type PointType41RollUp11                 = Word8                                  
+--type PointType41TLPParamArchived11       = [Word8]                                
+--type PointType41ConvRollUp11             = Float                                  
+--type PointType41HistPnt12                = Word8                                  
+--type PointType41RollUp12                 = Word8                                  
+--type PointType41TLPParamArchived12       = [Word8]                                
+--type PointType41ConvRollUp12             = Float                                  
+--type PointType41HistPnt13                = Word8                                  
+--type PointType41RollUp13                 = Word8                                  
+--type PointType41TLPParamArchived13       = [Word8]                               
+--type PointType41ConvRollUp13             = Float                                  
+--type PointType41HistPnt14                = Word8                                  
+--type PointType41RollUp14                 = Word8                                  
+--type PointType41TLPParamArchived14       = [Word8]                                
+--type PointType41ConvRollUp14             = Float                                  
+--type PointType41HistPnt15                = Word8                                 
+--type PointType41RollUp15                 = Word8                                  
+--type PointType41TLPParamArchived15       = [Word8]                                
+--type PointType41ConvRollUp15             = Float                                  
+--type PointType41HistPnt16                = Word8                                  
+--type PointType41RollUp16                 = Word8                                  
+--type PointType41TLPParamArchived16       = [Word8]                                
+--type PointType41ConvRollUp16             = Float                                
  
   
 pointType41Parser :: Get PointType41 
@@ -234,37 +233,37 @@ pointType41Parser = do
   rollUp10 <- getWord8                        
   tLPParamArchived10 <- getTLP                        
   convRollUp10 <- getIeeeFloat32                        
-  histPnt11 <- getWord8                        
-  rollUp11 <- getWord8                        
-  tLPParamArchived11 <- getTLP                        
-  convRollUp11 <- getIeeeFloat32                        
-  histPnt12 <- getWord8                        
-  rollUp12 <- getWord8                        
-  tLPParamArchived12 <- getTLP                        
-  convRollUp12 <- getIeeeFloat32                        
-  histPnt13 <- getWord8                        
-  rollUp13 <- getWord8                        
-  tLPParamArchived13 <- getTLP                        
-  convRollUp13 <- getIeeeFloat32                        
-  histPnt14 <- getWord8                        
-  rollUp14 <- getWord8                        
-  tLPParamArchived14 <- getTLP                        
-  convRollUp14 <- getIeeeFloat32                        
-  histPnt15 <- getWord8                        
-  rollUp15 <- getWord8                        
-  tLPParamArchived15 <- getTLP                        
-  convRollUp15 <- getIeeeFloat32                        
-  histPnt15 <- getWord8                        
-  rollUp15 <- getWord8                        
-  tLPParamArchived15 <- getTLP                        
-  convRollUp15 <- getIeeeFloat32                        
+--  histPnt11 <- getWord8                        
+--  rollUp11 <- getWord8                        
+--  tLPParamArchived11 <- getTLP                        
+--  convRollUp11 <- getIeeeFloat32                        
+--  histPnt12 <- getWord8                        
+--  rollUp12 <- getWord8                        
+--  tLPParamArchived12 <- getTLP                        
+--  convRollUp12 <- getIeeeFloat32                        
+--  histPnt13 <- getWord8                        
+--  rollUp13 <- getWord8                        
+--  tLPParamArchived13 <- getTLP                        
+--  convRollUp13 <- getIeeeFloat32                        
+--  histPnt14 <- getWord8                        
+--  rollUp14 <- getWord8                        
+--  tLPParamArchived14 <- getTLP                        
+--  convRollUp14 <- getIeeeFloat32                        
+--  histPnt15 <- getWord8                        
+--  rollUp15 <- getWord8                        
+--  tLPParamArchived15 <- getTLP                        
+--  convRollUp15 <- getIeeeFloat32                        
+--  histPnt16 <- getWord8                        
+--  rollUp16 <- getWord8                        
+--  tLPParamArchived16 <- getTLP                        
+--  convRollUp16 <- getIeeeFloat32                        
   
   return $ PointType41 pointTag aTMPress calcMethodII notUse1 pipeRefTemp pipeMaterial notUse2 mtrTypeOrCdTbFtm frOrReynoldsNum orExpFactorTbFpm fpbFactor ftpFactor ftfFactor 
     fgrFactor fpvFactor histPnt1 rollUp1 tLPParamArchived1 convRollUp1 histPnt2 rollUp2 tLPParamArchived2 convRollUp2 histPnt3 rollUp3 tLPParamArchived3 convRollUp3 histPnt4 
     rollUp4 tLPParamArchived4 convRollUp4 histPnt5 rollUp5 tLPParamArchived5 convRollUp5 histPnt6 rollUp6 tLPParamArchived6 convRollUp6 histPnt7 rollUp7 tLPParamArchived7 
-    convRollUp7 histPnt8 rollUp8 tLPParamArchived8 convRollUp8 histPnt9 rollUp9 tLPParamArchived9 convRollUp9 histPnt10 rollUp10 tLPParamArchived10 convRollUp10 histPnt11 
-    rollUp11 tLPParamArchived11 convRollUp11 histPnt12 rollUp12 tLPParamArchived12 convRollUp12 histPnt13 rollUp13 tLPParamArchived13 convRollUp13 histPnt14 rollUp14 
-    tLPParamArchived14 convRollUp14 histPnt15 rollUp15 tLPParamArchived15 convRollUp15 histPnt15 rollUp15 tLPParamArchived15 convRollUp15  
+    convRollUp7 histPnt8 rollUp8 tLPParamArchived8 convRollUp8 histPnt9 rollUp9 tLPParamArchived9 convRollUp9 histPnt10 rollUp10 tLPParamArchived10 convRollUp10 --histPnt11 
+--    rollUp11 tLPParamArchived11 convRollUp11 histPnt12 rollUp12 tLPParamArchived12 convRollUp12 histPnt13 rollUp13 tLPParamArchived13 convRollUp13 histPnt14 rollUp14 
+--    tLPParamArchived14 convRollUp14 histPnt15 rollUp15 tLPParamArchived15 convRollUp15 histPnt16 rollUp16 tLPParamArchived16 convRollUp16  
   
   
   
