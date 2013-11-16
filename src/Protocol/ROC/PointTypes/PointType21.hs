@@ -33,5 +33,3 @@ pointType21Parser = do
   return $ PointType21 pointTypeDesc templatePointer numParameters displayNum
 
 
-
-

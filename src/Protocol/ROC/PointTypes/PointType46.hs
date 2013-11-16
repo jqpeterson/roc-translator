@@ -1,7 +1,7 @@
 {-# LANGUAGE TupleSections, OverloadedStrings, QuasiQuotes, TemplateHaskell, TypeFamilies, RecordWildCards,
              DeriveGeneric ,MultiParamTypeClasses ,FlexibleInstances  #-}
 
-module Protocol.ROC.PointTypes.PointType41 where
+module Protocol.ROC.PointTypes.PointType46 where
 
 import GHC.Generics
 import qualified Data.ByteString as BS
@@ -11,7 +11,7 @@ import Data.Binary.Get
 import Protocol.ROC.Float
 import Protocol.ROC.PointTypes.Utils
 
-data PointType41 = PointType41 {
+data PointType46 = PointType46 {
   
  pointType46PointTag                                  :: !PointType46PointTag                                                              
 ,pointType46PointDesc                                 :: !PointType46PointDesc                                                                     
@@ -191,119 +191,119 @@ type PointType46HighestKFactorCalc2                    = Float
 type PointType46SixthKFactorEU                         = Float                                   
 type PointType46SeventhKFactorEU                       = Float                                    
 type PointType46EighthKFactorEU                        = Float                                     
-type PointType46NinthKFactorEU                         = Float      
-type PointType46TenthKFactorEU                         = Float      
-type PointType46EleventhKFactorEU                      = Float      
-ype PointType46HighestKFactorEU2                      = Float      
-type PointType46ArgonMolePercent                       = Float      
-type PointType46CFGStatus                              = Word8      
-type PointType46LinearMtrSecWOPulsePriorNoFlow         = Word32      
-type PointType46OrType                                 = Word8      
-type PointType46CoeffOfDischarge                       = Float      
-type PointType46AlarmDeadband                          = Float      
-type PointType46PressLost                              = Float      
-type PointType46JouleThompsonCoeff                     = Float      
-type PointType46APIOptions                             = Float      
+type PointType46NinthKFactorEU                         = Float                        
+type PointType46TenthKFactorEU                         = Float                        
+type PointType46EleventhKFactorEU                      = Float                        
+type PointType46HighestKFactorEU2                      = Float                        
+type PointType46ArgonMolePercent                       = Float                        
+type PointType46CFGStatus                              = Word8                        
+type PointType46LinearMtrSecWOPulsePriorNoFlow         = Word32                        
+type PointType46OrType                                 = Word8                        
+type PointType46CoeffOfDischarge                       = Float                        
+type PointType46AlarmDeadband                          = Float                        
+type PointType46PressLost                              = Float                        
+type PointType46JouleThompsonCoeff                     = Float                        
+type PointType46APIOptions                             = Word8                        
   
-pointType41Parser :: Get PointType41 
-pointType41Parser = do   
+pointType46Parser :: Get PointType46 
+pointType46Parser = do   
                                          
-  pointTag <-                                                                  
-  pointDesc <-                                                                 
-  calcMethod <-                                                                
-  calcMethodII <-                                                              
-  options <-                                                                   
-  contractHour <-                                                       
-  orIntegrlOrTbBaseMultiPeriod <-                                      
-  pipeDiam <-                                                                  
-  pipeRefTemp <-                                                                 
-  pipeMaterial <-                                                       
-  orDiam <-                                                            
-  orRefTemp <-                                                                 
-  orMaterial <-                                                                  
-  baseOrContractPress <-                                                
-  baseOrContractTemp <-                                                
-  atmosPress <-                                                                
-  specificGravity <-                                                             
-  heatingValue <-                                                       
-  viscosity <-                                                         
-  specificHeatRatio <-                                                         
-  eevation <-                                                                    
-  latitude <-                                                           
-  localGravAccel <-                                                    
-  nitrogen <-                                                                  
-  carbonDioxide <-                                                               
-  hydrogenSulfide <-                                                    
-  water <-                                                             
-  helium <-                                                                    
-  methane <-                                                                     
-  ethane <-                                                             
-  propane <-                                                           
-  nButane <-                                                                   
-  iButane <-                                                                     
-  nPentane <-                                                           
-  iPentane <-                                                          
-  nHexane <-                                 
-  nHeptane <-                                
-  nOctane <-                                 
-  nNonane <-                                 
-  nDecane <-                                 
-  oxygen <-                                  
-  carbonMonoxde <-                           
-  hydrogen <-                                
-  orLowhwCutoffOrTbKFactor <-                
-  dPHighhwStpntOrLinearMtrLowFlowCutoff <-   
-  dPLowhwStpnt <-                            
-  dPEnabledStackedhw <-                      
-  dPLowhwTLP <-                              
-  orhwOrTbUncrtdFlowRateTLP <-               
-  pfStaticPressTLP <-                        
-  tfFlowingTempTLP <-                        
-  orDPhwOrTbUncrtdFlowRate <-                
-  pfFlowingPress <-                          
-  tfFlowingTemp <-                           
-  alarmCode <-                               
-  lowAlarmFlow <-                            
-  highAlarmFlow <-                           
-  averagingTechnique <-                      
-  fullRecalcFlag <-                          
-  tLPInputMultiKFactorCalc <-                
-  deadbandMultiKFactorCalc <-                
-  lowestKFactorCalc <-                       
-  secondKFactorCalc <-                       
-  thirdKFactorCalc <-                        
-  fourthKFactorCalc <-                       
-  highestKFactorCalc <-                      
-  lowestKFactorEU <-                         
-  secondKFactorEU <-                         
-  thirdKFactorEU <-                          
-  fourthKFactorEU <-                         
-  highestKFactorEU <-                        
-  sixthKFactorCalc <-                        
-  seventhKFactorCalc <-                      
-  eighthKFactorCalc <-                       
-  ninthKFactorCalc <-                        
-  tenthKFactorCalc <-                        
-  eleventhKFactorCalc <-                     
-  highestKFactorCalc2 <-                     
-  sixthKFactorEU <-                          
-  seventhKFactorEU <-                        
-  eighthKFactorEU <-                         
-  ninthKFactorEU <-                          
-  tenthKFactorEU <-                          
-  eleventhKFactorEU <-                       
-  highestKFactorEU2 <-                       
-  argonMolePercent <-                                                          
-  cFGStatus <-                                                                   
-  linearMtrSecWOPulsePriorNoFlow <-                                    
-  orType <-                                                           
-  coeffOfDischarge <-                                                         
-  alarmDeadband <-                                                              
-  pressLost <-                                                           
-  jouleThompsonCoeff <-                                                 
-  aPIOptions <-                                                                 
+  pointTag <- getByteString 10                                                                 
+  pointDesc <- getByteString 30                                                                
+  calcMethod <- getWord8                                                                     
+  calcMethodII <- getWord8                                                                   
+  options <- getWord8                                                                        
+  contractHour <- getWord8                                                            
+  orIntegrlOrTbBaseMultiPeriod <- getIeeeFloat32                                           
+  pipeDiam <- getIeeeFloat32                                                                       
+  pipeRefTemp <- getIeeeFloat32                                                                      
+  pipeMaterial <- getWord8                                                            
+  orDiam <- getIeeeFloat32                                                                 
+  orRefTemp <- getIeeeFloat32                                                                      
+  orMaterial <- getWord8                                                                       
+  baseOrContractPress <- getIeeeFloat32                                                     
+  baseOrContractTemp <- getIeeeFloat32                                                     
+  atmosPress <- getIeeeFloat32                                                                     
+  specificGravity <- getIeeeFloat32                                                                  
+  heatingValue <- getIeeeFloat32                                                            
+  viscosity <- getIeeeFloat32                                                              
+  specificHeatRatio <- getIeeeFloat32                                                              
+  eevation <- getIeeeFloat32                                                                         
+  latitude <- getIeeeFloat32                                                                
+  localGravAccel <- getIeeeFloat32                                                         
+  nitrogen <- getIeeeFloat32                                                                       
+  carbonDioxide <- getIeeeFloat32                                                                    
+  hydrogenSulfide <- getIeeeFloat32                                                         
+  water <- getIeeeFloat32                                                                  
+  helium <- getIeeeFloat32                                                                         
+  methane <- getIeeeFloat32                                                                          
+  ethane <- getIeeeFloat32                                                                  
+  propane <- getIeeeFloat32                                                                
+  nButane <- getIeeeFloat32                                                                        
+  iButane <- getIeeeFloat32                                                                          
+  nPentane <- getIeeeFloat32                                                                
+  iPentane <- getIeeeFloat32                                                               
+  nHexane <- getIeeeFloat32                                      
+  nHeptane <- getIeeeFloat32                                     
+  nOctane <- getIeeeFloat32                                      
+  nNonane <- getIeeeFloat32                                      
+  nDecane <- getIeeeFloat32                                      
+  oxygen <- getIeeeFloat32                                       
+  carbonMonoxde <- getIeeeFloat32                                
+  hydrogen <- getIeeeFloat32                                     
+  orLowhwCutoffOrTbKFactor <- getIeeeFloat32                     
+  dPHighhwStpntOrLinearMtrLowFlowCutoff <- getIeeeFloat32           
+  dPLowhwStpnt <- getIeeeFloat32                                 
+  dPEnabledStackedhw <- anyButNull                           
+  dPLowhwTLP <- getTLP                                 
+  orhwOrTbUncrtdFlowRateTLP <- getTLP                   
+  pfStaticPressTLP <- getTLP                            
+  tfFlowingTempTLP <- getTLP                            
+  orDPhwOrTbUncrtdFlowRate <- getIeeeFloat32                     
+  pfFlowingPress <- getIeeeFloat32                               
+  tfFlowingTemp <- getIeeeFloat32                                
+  alarmCode <- getWord8                                   
+  lowAlarmFlow <- getIeeeFloat32                                 
+  highAlarmFlow <- getIeeeFloat32                                
+  averagingTechnique <- getWord8                           
+  fullRecalcFlag <- anyButNull                               
+  tLPInputMultiKFactorCalc <- getTLP                    
+  deadbandMultiKFactorCalc <- getIeeeFloat32                     
+  lowestKFactorCalc <- getIeeeFloat32                            
+  secondKFactorCalc <- getIeeeFloat32                            
+  thirdKFactorCalc <- getIeeeFloat32                             
+  fourthKFactorCalc <- getIeeeFloat32                            
+  highestKFactorCalc <- getIeeeFloat32                           
+  lowestKFactorEU <- getIeeeFloat32                              
+  secondKFactorEU <- getIeeeFloat32                              
+  thirdKFactorEU <- getIeeeFloat32                               
+  fourthKFactorEU <- getIeeeFloat32                              
+  highestKFactorEU <- getIeeeFloat32                             
+  sixthKFactorCalc <- getIeeeFloat32                             
+  seventhKFactorCalc <- getIeeeFloat32                           
+  eighthKFactorCalc <- getIeeeFloat32                            
+  ninthKFactorCalc <- getIeeeFloat32                             
+  tenthKFactorCalc <- getIeeeFloat32                             
+  eleventhKFactorCalc <- getIeeeFloat32                          
+  highestKFactorCalc2 <- getIeeeFloat32                          
+  sixthKFactorEU <- getIeeeFloat32                               
+  seventhKFactorEU <- getIeeeFloat32                             
+  eighthKFactorEU <- getIeeeFloat32                              
+  ninthKFactorEU <- getIeeeFloat32                               
+  tenthKFactorEU <- getIeeeFloat32                               
+  eleventhKFactorEU <- getIeeeFloat32                            
+  highestKFactorEU2 <- getIeeeFloat32                            
+  argonMolePercent <- getIeeeFloat32                                                               
+  cFGStatus <- getWord8                                                                        
+  linearMtrSecWOPulsePriorNoFlow <- getWord32le                                         
+  orType <- getWord8                                                                
+  coeffOfDischarge <- getIeeeFloat32                                                              
+  alarmDeadband <- getIeeeFloat32                                                                   
+  pressLost <- getIeeeFloat32                                                                
+  jouleThompsonCoeff <- getIeeeFloat32                                                      
+  aPIOptions <- getWord8                                                                      
                                        
-  return $ PointType41 pointTag pointDesc calcMethod calcMethodII options contractHour orIntegrlOrTbBaseMultiPeriod pipeDiam pipeRefTemp pipeMaterial orDiam orRefTemp 
+  return $ PointType46 pointTag pointDesc calcMethod calcMethodII options contractHour orIntegrlOrTbBaseMultiPeriod pipeDiam pipeRefTemp pipeMaterial orDiam orRefTemp 
     orMaterial baseOrContractPress baseOrContractTemp atmosPress specificGravity heatingValue viscosity specificHeatRatio eevation latitude localGravAccel nitrogen carbonDioxide 
     hydrogenSulfide water helium methane ethane propane nButane iButane nPentane iPentane nHexane nHeptane nOctane nNonane nDecane oxygen carbonMonoxde hydrogen 
     orLowhwCutoffOrTbKFactor dPHighhwStpntOrLinearMtrLowFlowCutoff dPLowhwStpnt dPEnabledStackedhw dPLowhwTLP orhwOrTbUncrtdFlowRateTLP pfStaticPressTLP tfFlowingTempTLP 
