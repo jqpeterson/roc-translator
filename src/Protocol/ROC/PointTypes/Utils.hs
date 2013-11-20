@@ -28,6 +28,11 @@ getInt16 = do
   x <- getWord16le
   return $ fromIntegral x
 
+getInt8 :: Get Int8
+getInt8 = do  
+  x <- getWord8
+  return $ fromIntegral x
+
 getTime :: Get [Word8]
 getTime = do  
   second <- getWord8
