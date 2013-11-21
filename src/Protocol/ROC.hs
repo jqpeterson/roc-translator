@@ -93,7 +93,7 @@ opCode167 cfg ptid = do
       rocAddress = rocConfigRocAddress cfg
                                  
 -----------------------------------SINGLE PULL---------------------------------------  
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,8,0])
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,26,0])
   receivebs <- receivePort port      
   print $ showInt <$> BS.unpack receivebs <*> [""]
   let dataBytes = BS.drop 10 $ BS.init $ BS.init receivebs

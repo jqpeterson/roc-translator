@@ -47,12 +47,10 @@ module Protocol.ROC.PointTypes (module PointTypes
                                ,pt86 
                                ,pt88 
                                ,pt89                                
-                               
-                               
-                               
-                               
-                               
-                               
+                               ,pt93                                                               
+--                               ,pt94                                                                
+--                               ,pt98                                                                
+
                                ) where
 
 import qualified Data.ByteString.Lazy as LB
@@ -103,6 +101,9 @@ import Protocol.ROC.PointTypes.PointType85 as PointTypes
 import Protocol.ROC.PointTypes.PointType86 as PointTypes
 import Protocol.ROC.PointTypes.PointType88 as PointTypes
 import Protocol.ROC.PointTypes.PointType89 as PointTypes
+import Protocol.ROC.PointTypes.PointType93 as PointTypes
+--import Protocol.ROC.PointTypes.PointType94 as PointTypes
+--import Protocol.ROC.PointTypes.PointType98 as PointTypes
 
 data PointTypes a = PTID1 (Either a PointType1)
                   | PTID2 (Either a PointType2)
@@ -147,7 +148,10 @@ data PointTypes a = PTID1 (Either a PointType1)
                   | PTID86 (Either a PointType86)                                                            
                   | PTID88 (Either a PointType88)                                                            
                   | PTID89 (Either a PointType89)                                                            
-                  
+                  | PTID93 (Either a PointType93)                                                                              
+--                  | PTID94 (Either a PointType94)                                                                                
+--                  | PTID98 (Either a PointType98)                                                                                
+
                   deriving (Read,Eq,Show)
 
 pt1 :: PointTypes () 
@@ -236,6 +240,12 @@ pt88 :: PointTypes ()
 pt88 = PTID88 $ Left ()
 pt89 :: PointTypes () 
 pt89 = PTID89 $ Left ()
+pt93 :: PointTypes () 
+pt93 = PTID93 $ Left ()
+--pt94 :: PointTypes () 
+--pt94 = PTID94 $ Left ()
+--pt98 :: PointTypes () 
+--pt98 = PTID98 $ Left ()
 
 
 decodePTID :: PointTypes a -> Word8
@@ -282,6 +292,9 @@ decodePTID (PTID85 _) = 85
 decodePTID (PTID86 _) = 86
 decodePTID (PTID88 _) = 88
 decodePTID (PTID89 _) = 89
+decodePTID (PTID93 _) = 93
+--decodePTID (PTID94 _) = 94
+--decodePTID (PTID98 _) = 98
 
 
 -----------------------------------------------------------------------------------
@@ -341,8 +354,9 @@ fetchPointType  (PTID85 _ ) bs = PTID85 $ decodeToEither $ runGetIncremental poi
 fetchPointType  (PTID86 _ ) bs = PTID86 $ decodeToEither $ runGetIncremental pointType86Parser `pushChunks` bs  
 fetchPointType  (PTID88 _ ) bs = PTID88 $ decodeToEither $ runGetIncremental pointType88Parser `pushChunks` bs  
 fetchPointType  (PTID89 _ ) bs = PTID89 $ decodeToEither $ runGetIncremental pointType89Parser `pushChunks` bs  
-
-
+fetchPointType  (PTID93 _ ) bs = PTID93 $ decodeToEither $ runGetIncremental pointType93Parser `pushChunks` bs  
+--fetchPointType  (PTID94 _ ) bs = PTID94 $ decodeToEither $ runGetIncremental pointType94Parser `pushChunks` bs  
+--fetchPointType  (PTID98 _ ) bs = PTID98 $ decodeToEither $ runGetIncremental pointType98Parser `pushChunks` bs  
 
 decodeToEither :: (Show a) => Decoder a -> Either LB.ByteString a
 decodeToEither (Fail _ _ s) = Left $ C8.append "decoder Failed with"  (C8.pack s)

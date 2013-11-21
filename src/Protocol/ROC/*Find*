@@ -1,0 +1,20 @@
+  /home/jeremy/work/translator/roc-translator/src/Protocol/ROC/:
+  find . \( -type f -exec grep -q -e id \{\} \; \) -ls
+* 919884    8 -rw-r--r--   1 jeremy   jeremy       5575 Nov  5 10:49 Float.hs
+* 919958    4 -rw-r--r--   1 jeremy   jeremy       3314 Nov  7 09:29 PointTypes/PointType2.hs
+* 919952    8 -rw-r--r--   1 jeremy   jeremy       4474 Nov  7 09:35 PointTypes/PointType1.hs
+  920007    8 -rw-r--r--   1 jeremy   jeremy       5544 Nov  4 10:01 PointTypes/PointType3.hs~
+* 921623   12 -rw-r--r--   1 jeremy   jeremy      10876 Nov  7 09:30 PointTypes/PointType7.hs
+  919957    8 -rw-r--r--   1 jeremy   jeremy       4786 Nov  1 16:17 PointTypes/PointType2.hs~
+  920021    8 -rw-r--r--   1 jeremy   jeremy       4270 Nov  4 18:10 PointTypes/PointType5.hs~
+  919954    8 -rw-r--r--   1 jeremy   jeremy       5814 Nov  1 13:49 PointTypes/PointType1.hs~
+* 919993    4 -rw-r--r--   1 jeremy   jeremy       3136 Nov  7 09:29 PointTypes/PointType4.hs
+* 920011    8 -rw-r--r--   1 jeremy   jeremy       7988 Nov  7 09:29 PointTypes/PointType3.hs
+* 920003    8 -rw-r--r--   1 jeremy   jeremy       5018 Nov  7 09:30 PointTypes/PointType5.hs
+  920014    8 -rw-r--r--   1 jeremy   jeremy       8029 Nov  4 14:32 PointTypes/PointType4.hs~
+  921624    8 -rw-r--r--   1 jeremy   jeremy       4798 Nov  5 11:33 PointTypes/PointType6.hs~
+  921692   12 -rw-r--r--   1 jeremy   jeremy      10839 Nov  6 17:44 PointTypes/PointType7.hs~
+* 921626   12 -rw-r--r--   1 jeremy   jeremy       9301 Nov  7 09:30 PointTypes/PointType6.hs
+  919774    8 -rw-r--r--   1 jeremy   jeremy       5062 Oct 31 15:15 PointTypes.hs~
+  
+  find finished at Thu Nov  7 10:21:43
