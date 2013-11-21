@@ -45,9 +45,8 @@ module Protocol.ROC.PointTypes (module PointTypes
                                ,pt81
                                ,pt85 
                                ,pt86 
---                               ,pt87 
---                               ,pt88 
---                               ,pt89                                
+                               ,pt88 
+                               ,pt89                                
                                
                                
                                
@@ -102,9 +101,8 @@ import Protocol.ROC.PointTypes.PointType80 as PointTypes
 import Protocol.ROC.PointTypes.PointType81 as PointTYpes
 import Protocol.ROC.PointTypes.PointType85 as PointTypes
 import Protocol.ROC.PointTypes.PointType86 as PointTypes
---import Protocol.ROC.PointTypes.PointType87 as PointTypes
---import Protocol.ROC.PointTypes.PointType88 as PointTypes
---import Protocol.ROC.PointTypes.PointType89 as PointTypes
+import Protocol.ROC.PointTypes.PointType88 as PointTypes
+import Protocol.ROC.PointTypes.PointType89 as PointTypes
 
 data PointTypes a = PTID1 (Either a PointType1)
                   | PTID2 (Either a PointType2)
@@ -147,9 +145,8 @@ data PointTypes a = PTID1 (Either a PointType1)
                   | PTID81 (Either a PointType81)                    
                   | PTID85 (Either a PointType85)                                                          
                   | PTID86 (Either a PointType86)                                                            
---                  | PTID87 (Either a PointType87)                                                            
---                  | PTID88 (Either a PointType88)                                                            
---                  | PTID89 (Either a PointType89)                                                            
+                  | PTID88 (Either a PointType88)                                                            
+                  | PTID89 (Either a PointType89)                                                            
                   
                   deriving (Read,Eq,Show)
 
@@ -235,12 +232,10 @@ pt85 :: PointTypes ()
 pt85 = PTID85 $ Left ()
 pt86 :: PointTypes () 
 pt86 = PTID86 $ Left ()
---pt87 :: PointTypes () 
---pt87 = PTID87 $ Left ()
---pt88 :: PointTypes () 
---pt88 = PTID88 $ Left ()
---pt89 :: PointTypes () 
---pt89 = PTID89 $ Left ()
+pt88 :: PointTypes () 
+pt88 = PTID88 $ Left ()
+pt89 :: PointTypes () 
+pt89 = PTID89 $ Left ()
 
 
 decodePTID :: PointTypes a -> Word8
@@ -285,9 +280,8 @@ decodePTID (PTID80 _) = 80
 decodePTID (PTID81 _) = 81
 decodePTID (PTID85 _) = 85
 decodePTID (PTID86 _) = 86
---decodePTID (PTID87 _) = 87
---decodePTID (PTID88 _) = 88
---decodePTID (PTID89 _) = 89
+decodePTID (PTID88 _) = 88
+decodePTID (PTID89 _) = 89
 
 
 -----------------------------------------------------------------------------------
@@ -313,8 +307,7 @@ fetchPointType  (PTID6 _ ) bs = PTID6 $ decodeToEither $ runGetIncremental point
 fetchPointType  (PTID7 _ ) bs = PTID7 $ decodeToEither $ runGetIncremental pointType7Parser `pushChunks` bs  
 fetchPointType  (PTID8 _ ) bs = PTID8 $ decodeToEither $ runGetIncremental pointType8Parser `pushChunks` bs 
 fetchPointType  (PTID9 _ ) bs = PTID9 $ decodeToEither $ runGetIncremental pointType9Parser `pushChunks` bs 
-fetchPointType  (PTID10 _ ) bs = PTID10 $ decodeToEither $ runGetIncremental pointType10Parser `pushChunks` bs   
---fetchPointType  (PTID11 _ ) bs = PTID11 $ decodeToEither $ runGetIncremental pointType11Parser `pushChunks` bs   
+fetchPointType  (PTID10 _ ) bs = PTID10 $ decodeToEither $ runGetIncremental pointType10Parser `pushChunks` bs      
 fetchPointType  (PTID12 _ ) bs = PTID12 $ decodeToEither $ runGetIncremental pointType12Parser `pushChunks` bs   
 fetchPointType  (PTID13 _ ) bs = PTID13 $ decodeToEither $ runGetIncremental pointType13Parser `pushChunks` bs  
 fetchPointType  (PTID14 _ ) bs = PTID14 $ decodeToEither $ runGetIncremental pointType14Parser `pushChunks` bs  
@@ -346,9 +339,8 @@ fetchPointType  (PTID80 _ ) bs = PTID80 $ decodeToEither $ runGetIncremental poi
 fetchPointType  (PTID81 _ ) bs = PTID81 $ decodeToEither $ runGetIncremental pointType81Parser `pushChunks` bs  
 fetchPointType  (PTID85 _ ) bs = PTID85 $ decodeToEither $ runGetIncremental pointType85Parser `pushChunks` bs  
 fetchPointType  (PTID86 _ ) bs = PTID86 $ decodeToEither $ runGetIncremental pointType86Parser `pushChunks` bs  
---fetchPointType  (PTID87 _ ) bs = PTID87 $ decodeToEither $ runGetIncremental pointType87Parser `pushChunks` bs  
---fetchPointType  (PTID88 _ ) bs = PTID88 $ decodeToEither $ runGetIncremental pointType88Parser `pushChunks` bs  
---fetchPointType  (PTID89 _ ) bs = PTID89 $ decodeToEither $ runGetIncremental pointType89Parser `pushChunks` bs  
+fetchPointType  (PTID88 _ ) bs = PTID88 $ decodeToEither $ runGetIncremental pointType88Parser `pushChunks` bs  
+fetchPointType  (PTID89 _ ) bs = PTID89 $ decodeToEither $ runGetIncremental pointType89Parser `pushChunks` bs  
 
 
 

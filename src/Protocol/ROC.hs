@@ -93,36 +93,36 @@ opCode167 cfg ptid = do
       rocAddress = rocConfigRocAddress cfg
                                  
 -----------------------------------SINGLE PULL---------------------------------------  
---  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,13,0])
---  receivebs <- receivePort port      
---  print $ showInt <$> BS.unpack receivebs <*> [""]
---  let dataBytes = BS.drop 10 $ BS.init $ BS.init receivebs
---  print $ BS.length dataBytes      
---  fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
---  print fetchedPointType  
+  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,8,0])
+  receivebs <- receivePort port      
+  print $ showInt <$> BS.unpack receivebs <*> [""]
+  let dataBytes = BS.drop 10 $ BS.init $ BS.init receivebs
+  print $ BS.length dataBytes      
+  fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
+  print fetchedPointType  
 ------------------------------------------------------------------------------------  
   
 --------------------------------MULTIPLE PULL---------------------------------------  
   
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,0])
-  receivebs <- receivePort port
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,50])
-  receivebs1 <- receivePort port
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,100])
-  receivebs2 <- receivePort port
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,150])
-  receivebs3 <- receivePort port
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,200])
-  receivebs4 <- receivePort port
-  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,0,0])
-  receivebs5 <- receivePort port
-  let dataBytes1 = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs) (BS.init $ BS.init $ BS.drop 10 receivebs1)
-  let dataBytes2 = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs2) (BS.init $ BS.init $ BS.drop 10 receivebs3)    
-  let dataBytes3 = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs4) (BS.init $ BS.init $ BS.drop 10 receivebs5)        
-  let dataBytes  = BS.append (BS.append dataBytes1 dataBytes2) dataBytes3    
-  print $ BS.length dataBytes      
-  fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
-  print fetchedPointType
+--  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,0])
+--  receivebs <- receivePort port
+--  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,50])
+--  receivebs1 <- receivePort port
+--  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,100])
+--  receivebs2 <- receivePort port
+--  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,150])
+--  receivebs3 <- receivePort port
+--  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,50,200])
+--  receivebs4 <- receivePort port
+--  _ <- sendPort port (rocAddress ++ hostAddress ++ [167,4,decodePTID ptid,0,0,0])
+--  receivebs5 <- receivePort port
+--  let dataBytes1 = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs) (BS.init $ BS.init $ BS.drop 10 receivebs1)
+--  let dataBytes2 = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs2) (BS.init $ BS.init $ BS.drop 10 receivebs3)    
+--  let dataBytes3 = BS.append (BS.init $ BS.init $ BS.drop 10 receivebs4) (BS.init $ BS.init $ BS.drop 10 receivebs5)        
+--  let dataBytes  = BS.append (BS.append dataBytes1 dataBytes2) dataBytes3    
+--  print $ BS.length dataBytes      
+--  fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict dataBytes)
+--  print fetchedPointType
 -------------------------------------------------------------------------------------
       
 
