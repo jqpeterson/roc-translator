@@ -8,8 +8,8 @@ import qualified Data.ByteString as BS
 import Data.Word
 import Data.Binary
 import Data.Binary.Get
-import Protocol.ROC.Float
-import Protocol.ROC.PointTypes.Utils
+import Protocol.ROC.Utils
+import Data.Time.Clock.POSIX
 
 data PointType93 = PointType93 {
  
@@ -25,7 +25,7 @@ data PointType93 = PointType93 {
 ,pointType93LicenseValidityState                     :: !PointType93LicenseValidityState                                   
 ,pointType93LiceseCreationDate                       :: !PointType93LiceseCreationDate                                   
 
-} deriving (Read,Eq, Show, Generic)                       
+} deriving (Eq, Show, Generic)                       
 
 type PointType93LicenseInstallationStatus            = Bool                  
 type PointType93LicenseNumber                        = Word8                  
@@ -35,9 +35,9 @@ type PointType93ApplicationCode                      = Word16
 type PointType93ApplicationVersion                   = BS.ByteString                                                 
 type PointType93QuantityTotal                        = Word8                  
 type PointType93QuantityRemaining                    = Word8                  
-type PointType93ExpirationData                       = Word32                                                 
+type PointType93ExpirationData                       = POSIXTime                                                 
 type PointType93LicenseValidityState                 = Word8                  
-type PointType93LiceseCreationDate                   = Word32                    
+type PointType93LiceseCreationDate                   = POSIXTime                    
 
 pointType93Parser :: Get PointType93
 pointType93Parser = do 
@@ -50,9 +50,9 @@ pointType93Parser = do
   applicationVersion <- getByteString 10 
   quantityTotal <- getWord8 
   quantityRemaining <- getWord8 
-  expirationData <- getWord32le 
+  expirationData <- getPosixTime 
   licenseValidityState <- getWord8 
-  liceseCreationDate <- getWord32le 
+  liceseCreationDate <- getPosixTime 
   
   
   return $ PointType93 licenseInstallationStatus licenseNumber applicationName applicationProvider applicationCode applicationVersion quantityTotal quantityRemaining 

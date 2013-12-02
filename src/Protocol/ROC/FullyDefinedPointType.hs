@@ -3,53 +3,41 @@
 
 module Protocol.ROC.FullyDefinedPointType where
 
---data FullyDefinedPointType = FDPT { fdptROCType                  :: ROCType 
---                                  ,fdptConfigurationBytes        :: ConfigurationBytes
---                                  ,fdptPointTypeID               :: PointTypeID                                   
---                                  ,fdptPointNumSet               :: SetOfPointNumbers                                   
---                                  ,fdptNumberOfParameters        :: NumberOfParameters         
---                                  ,fdptStartingParameterNumber   :: StartingParameterNumber
---                                  ,fdptRxProtocol                :: (i,j,p# -> PointTypes)
---                                  } deriving (Eq,Read,Show)
- 
+import Protocol.ROC.ROCConfig
+import Protocol.ROC.OpCodes
+import System.Hardware.Serialport
+import Protocol.ROC.Utils
+import qualified Data.ByteString as BS
+--import qualified Data.ByteString.Lazy as LB
+import Protocol.ROC.PointTypes
+import Data.Word
 
+              
+type FB107PT1    = DefaultPointType                        
+type FB107PT15   = DefaultPointType
+type FB107PT93   = DefaultPointType
+type FB107PT94   = DefaultPointType
 
-data FullyDefinedPointType u i j id s p = FDPT { fdptROCType                   :: u
-                                                ,fdptStartingParameterNumber   :: i
-                                                ,fdptNumberOfParameters        :: j
-                                                ,fdptPointTypeID               :: id                                                     
-                                                ,fdptSetOfPointNumbers         :: s                                   
-                                                ,fdptRxProtocol                :: (u -> i ->  j -> id -> s -> p)
-                                                } deriving (Eq,Read,Show)
-  
+defaultRxProtocol :: RocConfig -> Word8 -> PointTypes () -> Word8 -> Word8 -> IO BS.ByteString
+defaultRxProtocol cfg pn ptid pc sp  = do
+  let port = rocConfigPort cfg
+      commRate = rocCommSpeed cfg
+      pt = decodePTID ptid
+  s <- openSerial port defaultSerialSettings { commSpeed = commRate }
+  _ <- send s $ BS.append (opCode167 pt pn pc sp cfg) (lzyBSto16BScrc.pack8to16 $ BS.unpack $ opCode167 pt pn pc sp cfg)   
+  receivebs <- recvAllBytes s 255
+  closeSerial s
+  let databytes = BS.drop 10 $ BS.init $ BS.init receivebs
+  return databytes  
 
+fbUnit107PT1 :: FB107PT1
+fbUnit107PT1 = FDPT 107 pt1 23 0 defaultRxProtocol
 
-type ROCType                 = Word8               
-type StartingParameterNumber = Word8                
-type NumberOfParameters      = Word8          
-type PointTypeID             = Word8          
-type SetOfPointNumbers       = Maybe Int --[Word8]         
+fbUnit107PT15 :: FB107PT15
+fbUnit107PT15 = FDPT 107 pt15 26 0 defaultRxProtocol  
 
+fbUnit107PT93 :: FB107PT93
+fbUnit107PT93 = FDPT 107 pt93 11 0 defaultRxProtocol
 
-type DefaultPointType = FullyDefinedPointType ROCType StartingParameterNumber NumberOfParameters PointTypeID SetOfPointNumbers ByteString
-                      
-                        
-type FB107PT = DefaultPointType
-something = undefined
-fbUnit107PT15 :: FB107PT31
-fBUnit107PT15 = FDPT 107 0 26 15 Nothing something  
-                
---pt31RXProtocol = defaultRXfnctn
-                
---getPointType (FDPT
---            ""
---            startingParameter
---            numberOfParameters
---            pointID
---            {Valid} (Point #) 
---                              
---                              = check (Point #)(set)
---                                rxFnctn i j p# 
---                                
---defaultPTget ::  -> ByteString                                
---defaultPTget = 
+fbUnit107PT94 :: FB107PT94
+fbUnit107PT94 = FDPT 107 pt94 12 0 defaultRxProtocol

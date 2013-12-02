@@ -14,9 +14,12 @@ Library
   HS-Source-Dirs:       src
   GHC-Options:          -Wall
   Exposed-Modules:      Protocol.ROC
+                        Protocol.ROC.OpCodes
                         Protocol.ROC.PointTypes
                         Protocol.ROC.Float
-                        Protocol.ROC.PointTypes.Utils
+                        Protocol.ROC.Utils
+                        Protocol.ROC.FullyDefinedPointType
+
   Other-Modules:        Protocol.ROC.Internal
 
   Build-Depends:        base >= 4 && < 5
@@ -27,6 +30,8 @@ Library
                        , lens       >= 3.10 && < 4
                        , binary
                        , crc16-table == 0.1
+                       , time == 1.4.0.1
+
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
   Default-Language:     Haskell2010

@@ -6,7 +6,7 @@ module Protocol.ROC.PointTypes.PointType13 where
 import GHC.Generics
 import Data.Word
 import Data.Binary
-import Protocol.ROC.PointTypes.Utils
+import Protocol.ROC.Utils
 
 data PointType13 = PointType13 {
  pointType13CRCCheck                    :: !PointType13CRCCheck                                  

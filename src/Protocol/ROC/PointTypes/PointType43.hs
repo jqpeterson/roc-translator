@@ -8,7 +8,7 @@ import qualified Data.ByteString as BS
 import Data.Word
 import Data.Binary
 import Data.Binary.Get
-import Protocol.ROC.PointTypes.Utils
+import Protocol.ROC.Utils
 
 data PointType43 = PointType43 {
  pointType43Text1                     :: !PointType43Text1                                   

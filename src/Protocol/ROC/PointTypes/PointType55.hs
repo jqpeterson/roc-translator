@@ -7,7 +7,7 @@ import GHC.Generics
 import Data.Word
 import Data.Binary
 import Data.Binary.Get
-import Protocol.ROC.PointTypes.Utils
+import Protocol.ROC.Utils
 
 data PointType55 = PointType55 {
   

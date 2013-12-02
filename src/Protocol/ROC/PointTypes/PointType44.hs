@@ -10,7 +10,7 @@ import Data.Int
 import Data.Binary
 import Data.Binary.Get
 import Protocol.ROC.Float
-import Protocol.ROC.PointTypes.Utils
+import Protocol.ROC.Utils
 
 data PointType44 = PointType44 {
  pointType44PointTag                :: !PointType44PointTag                                      

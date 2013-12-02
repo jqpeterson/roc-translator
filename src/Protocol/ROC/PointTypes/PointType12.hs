@@ -6,7 +6,7 @@ module Protocol.ROC.PointTypes.PointType12 where
 import GHC.Generics
 import Data.Word
 import Data.Binary
-import Protocol.ROC.PointTypes.Utils
+import Protocol.ROC.Utils
 
 data PointType12 = PointType12 {
  pointType12Seconds                :: !PointType12Seconds                                     

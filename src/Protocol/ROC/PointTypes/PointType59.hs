@@ -8,7 +8,7 @@ import Data.Int
 import Data.Word
 import Data.Binary
 import Data.Binary.Get
-import Protocol.ROC.PointTypes.Utils
+import Protocol.ROC.Utils
 
 data PointType59 = PointType59 {
  
