@@ -17,6 +17,10 @@ type FB107PT1    = DefaultPointType
 type FB107PT15   = DefaultPointType
 type FB107PT93   = DefaultPointType
 type FB107PT94   = DefaultPointType
+type FB107PT98   = DefaultPointType
+type FB107PT117  = DefaultPointType
+type FB107PT118  = DefaultPointType
+type FB107PT121  = DefaultPointType
 
 defaultRxProtocol :: RocConfig -> Word8 -> PointTypes () -> Word8 -> Word8 -> IO BS.ByteString
 defaultRxProtocol cfg pn ptid pc sp  = do
@@ -41,3 +45,15 @@ fbUnit107PT93 = FDPT 107 pt93 11 0 defaultRxProtocol
 
 fbUnit107PT94 :: FB107PT94
 fbUnit107PT94 = FDPT 107 pt94 12 0 defaultRxProtocol
+
+fbUnit107PT98 :: FB107PT98
+fbUnit107PT98 = FDPT 107 pt98 44 0 defaultRxProtocol
+
+fbUnit107PT117 :: FB107PT117
+fbUnit107PT117 = FDPT 107 pt117 30 0 defaultRxProtocol
+
+fbUnit107PT118 :: FB107PT118
+fbUnit107PT118 = FDPT 107 pt118 91 0 defaultRxProtocol
+
+fbUnit107PT121 :: FB107PT121
+fbUnit107PT121 = FDPT 107 pt121 151 0 defaultRxProtocol
