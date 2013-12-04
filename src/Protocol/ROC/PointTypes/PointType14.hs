@@ -91,7 +91,7 @@ type PointType14StoreForwardGroup2           = Word8
 type PointType14StoreForwardAddress3         = Word8                         
 type PointType14StoreForwardGroup3           = Word8                       
 type PointType14IdleCharDelay                = Word16                  
-type PointType14ExtraKeyOnDelayorPortOwner   = Word16                               
+type PointType14ExtraKeyOnDelayorPortOwner   = Word8                               
 type PointType14RecBufferAddress             = Word32                       
 type PointType14TransBufferAddress           = Word32                         
 
@@ -135,7 +135,7 @@ pointType14Parser = do
   storeForwardAddress3 <- getWord8
   storeForwardGroup3 <- getWord8
   idleCharDelay <- getWord16le
-  extraKeyOnDelayorPortOwner <- getWord16le
+  extraKeyOnDelayorPortOwner <- getWord8
   recBufferAddress <- getWord32le
   transBufferAddress <- getWord32le
  

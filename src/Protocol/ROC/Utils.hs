@@ -10,7 +10,7 @@ import qualified Data.ByteString as BS
 import Data.ByteString.Builder
 import qualified Data.ByteString.Lazy as LB
 import Foreign.CRC
-import System.Hardware.Serialport
+--import System.Hardware.Serialport
 import Data.Time.Clock.POSIX
 
 getTLP :: Get [Word8]
@@ -54,6 +54,12 @@ getPosixTime :: Get POSIXTime
 getPosixTime = do  
   x <- getWord32le
   return $ fromIntegral x
+
+divTwo :: Word8 -> Word8
+divTwo x = let evenTest = even x 
+           in case evenTest of    
+             True -> div x 2
+             False -> div (x-1) 2
 
 crcTestBS :: Word8 -> Bool
 crcTestBS w 

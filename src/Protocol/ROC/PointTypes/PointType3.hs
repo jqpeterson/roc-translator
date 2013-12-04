@@ -14,7 +14,7 @@ import Protocol.ROC.Utils
 
 data PointType3 = PointType3 {
  pointType3PointTag                      :: !PointType3PointTag                       
-,pointType3TimeOn                        :: !PointType3TimeOn                       
+,pointType3Units                         :: !PointType3Units 
 ,pointType3ScanPeriod                    :: !PointType3ScanPeriod                    
 ,pointType3Filter                        :: !PointType3Filter                        
 ,pointType3AdjustedDA0                   :: !PointType3AdjustedDA0                  
@@ -51,8 +51,8 @@ data PointType3 = PointType3 {
 ,pointType3CablibrationType              :: !PointType3CablibrationType                       
 } deriving (Read,Eq, Show, Generic)                       
 
-type PointType3PointTag                         = BS.ByteString    
-type PointType3TimeOn                           = Word16            
+type PointType3PointTag                         = BS.ByteString
+type PointType3Units                            = BS.ByteString    
 type PointType3ScanPeriod                       = Word16           
 type PointType3Filter                           = Word16               
 type PointType3AdjustedDA0                      = Int16             
@@ -92,7 +92,7 @@ type PointType3CablibrationType                 = Word8
 pointType3Parser :: Get PointType3
 pointType3Parser = do 
   pointId <- getByteString 10 
-  timeon <- getWord16le
+  units <- getByteString 10
   scanPeriod <- getWord16le
   fltr <- getWord16le
   adjustedDA0 <- getInt16
@@ -128,6 +128,9 @@ pointType3Parser = do
   calibrationMode <- getWord8
   calibrationType <- getWord8
   
-  return $ PointType3 pointId timeon scanPeriod fltr adjustedDA0 adjustedDA100 lowReading highReading lowAlarm highAlarm lowLowAlarm highHighAlarm rateAlarm alarmDeadband filteredEU cfg alarmCode rawDAInput actualScanTime faultEUValue calibrated0ADValue calibratedMidpoint1ADValue calibratedMidpoint2ADValue calibratedMidpoint3ADValue calibratedSpanADValue calibrated0EUValue calibratedMidpoint1EUValue calibratedMidpoint2EUValue calibratedMidpoint3EUValue calibratedSpanEUValue offset calibrationSetEUValue manualEU timer calibrationMode calibrationType
+  return $ PointType3 pointId units scanPeriod fltr adjustedDA0 adjustedDA100 lowReading highReading lowAlarm highAlarm lowLowAlarm highHighAlarm rateAlarm alarmDeadband 
+    filteredEU cfg alarmCode rawDAInput actualScanTime faultEUValue calibrated0ADValue calibratedMidpoint1ADValue calibratedMidpoint2ADValue calibratedMidpoint3ADValue 
+    calibratedSpanADValue calibrated0EUValue calibratedMidpoint1EUValue calibratedMidpoint2EUValue calibratedMidpoint3EUValue calibratedSpanEUValue offset calibrationSetEUValue 
+    manualEU timer calibrationMode calibrationType
 
 

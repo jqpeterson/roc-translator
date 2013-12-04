@@ -9,7 +9,6 @@ import Data.Word
 import Data.Binary
 import Data.Binary.Get
 import Protocol.ROC.Float
-import Protocol.ROC.Utils
 
 data PointType40 = PointType40 {
   
@@ -110,13 +109,13 @@ type PointType40DPLowAlarm             = Float
 type PointType40DPHighAlarm            = Float                                         
 type PointType40DPDeadband             = Float                                         
 type PointType40DPAlarmFaultValue      = Float                                         
-type PointType40APMode                 = Bool                                         
+type PointType40APMode                 = Word8                                         
 type PointType40APAlarmCode            = Word8                                         
 type PointType40APLowAlarm             = Float                                         
 type PointType40APHighAlarm            = Float                                         
 type PointType40APDeadband             = Float                                         
 type PointType40APAlarmFaultValue      = Float                                         
-type PointType40PTMode                 = Bool                                         
+type PointType40PTMode                 = Word8                                         
 type PointType40PTAlarmCode            = Word8                                         
 type PointType40PTLowAlarm             = Float                                         
 type PointType40PTHighAlarm            = Float                                         
@@ -168,13 +167,13 @@ pointType40Parser = do
   dPHighAlarm <- getIeeeFloat32              
   dPDeadband <- getIeeeFloat32               
   dPAlarmFaultValue <- getIeeeFloat32        
-  aPMode <- anyButNull                   
+  aPMode <- getWord8                   
   aPAlarmCode <- getWord8              
   aPLowAlarm <- getIeeeFloat32               
   aPHighAlarm <- getIeeeFloat32              
   aPDeadband <- getIeeeFloat32               
   aPAlarmFaultValue <- getIeeeFloat32        
-  pTMode <- anyButNull                   
+  pTMode <- getWord8                   
   pTAlarmCode <- getWord8              
   pTLowAlarm <- getIeeeFloat32               
   pTHighAlarm <- getIeeeFloat32              

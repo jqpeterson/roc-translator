@@ -72,7 +72,7 @@ reorderMbits f = let m         = msBytesMask .&. f  -- mmmmmmmm | mmmmmmmm | 0mm
                      mPlaced   = rShiftByte mOrdered 1 ---- 00000000 | 0mmmmmmm | mmmmmmmm | mmmmmmmm 
                      sBit      = testBit m 7
                  in case sBit of  --Check if signed mantessa
-                      True -> fromIntegral (0xFF000000 .|. mPlaced) -- add in the signed ones compliment bits
+                      True -> fromIntegral (0x00000001 + (complement mPlaced))  -- (0xFF000000 .|. mPlaced) -- add in the signed ones compliment bits
                       False -> fromIntegral (mPlaced)
                      
 
