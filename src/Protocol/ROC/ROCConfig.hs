@@ -30,7 +30,7 @@ data FullyDefinedPointType cfg pn rt pt pc sp rp = FDPT { fdptROCType           
 type ROCType                 = Word8               
 type PointTypeID a           = PointTypes a
 type PointNumber             = Word8 -- Maybe Int         
-type ParameterCount          = Word8          
+type ParameterCount          = Word          
 type StartParameter          = Word8                
 
 type DefaultPointType = FullyDefinedPointType RocConfig Word8 ROCType (PointTypes ()) ParameterCount StartParameter (IO BS.ByteString)

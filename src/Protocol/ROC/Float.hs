@@ -9,6 +9,7 @@ import Data.Bits
 import Data.Binary.Get
 -- import Numeric
 -- import Control.Applicative
+import Debug.Trace
 
 {-| 
 
@@ -72,8 +73,8 @@ reorderMbits f = let m         = msBytesMask .&. f  -- mmmmmmmm | mmmmmmmm | 0mm
                      mPlaced   = rShiftByte mOrdered 1 ---- 00000000 | 0mmmmmmm | mmmmmmmm | mmmmmmmm 
                      sBit      = testBit m 7
                  in case sBit of  --Check if signed mantessa
-                      True -> fromIntegral (0x00000001 + (complement mPlaced))  -- (0xFF000000 .|. mPlaced) -- add in the signed ones compliment bits
-                      False -> fromIntegral (mPlaced)
+                      True -> fromIntegral ((complement (mPlaced .|. 0x00800000)) + 0x00000001)
+                      False -> fromIntegral (mPlaced .|. 0x00800000)
                      
 
 -- | in m * 2^(e) e are the Exp bits                        
@@ -96,7 +97,7 @@ calculateExponentBits x = (fromIntegral x) - (127+23)
 -- that is why the sign has to be coded separately
 
 calculateMantessaBit :: (Integral a) => a -> Int32 
-calculateMantessaBit x = (fromIntegral x) `xor`0x00800000
+calculateMantessaBit x = (fromIntegral x) -- `xor`0x00800000
 
 byte3Mask :: Word32 
 byte3Mask   = 0xFF000000

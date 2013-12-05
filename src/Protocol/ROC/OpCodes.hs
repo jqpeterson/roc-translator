@@ -40,7 +40,7 @@ opCode17 cfg = let hostAddress = rocConfigHostAddress cfg
                in  BS.append (BS.pack (rocAddress ++ hostAddress ++ [17,5])) (LB.toStrict $ LB.append login password)
 
 
-opCode167 :: Word8 -> PointNumber -> ParameterCount -> StartParameter -> RocConfig -> BS.ByteString
+opCode167 :: Word8 -> PointNumber -> Word8 -> StartParameter -> RocConfig -> BS.ByteString
 opCode167 ptid pn pc ps cfg = let hostAddress = rocConfigHostAddress cfg
                                   rocAddress = rocConfigRocAddress cfg
                               in BS.pack (rocAddress ++ hostAddress ++ [167,4,ptid,pn,pc,ps])
