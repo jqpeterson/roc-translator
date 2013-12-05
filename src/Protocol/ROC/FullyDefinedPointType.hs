@@ -56,11 +56,14 @@ type FB107PT94     = DefaultPointType
 type FB107PT98     = DefaultPointType
 type FB107PT117     = DefaultPointType
 type FB107PT118     = DefaultPointType
---type FB107PT120     = DefaultPointType
 type FB107PT121     = DefaultPointType
 type FB107PT122     = DefaultPointType
---type FB107PT176     = DefaultPointType
---type FB107PT177     = DefaultPointType
+type FB107PT172     = DefaultPointType
+type FB107PT173     = DefaultPointType
+type FB107PT174     = DefaultPointType
+type FB107PT175     = DefaultPointType
+type FB107PT176     = DefaultPointType
+type FB107PT177     = DefaultPointType
 
 defaultRxProtocol' :: (Integral a, Integral b) => RocConfig -> Word8 -> PointTypes () -> a -> b -> IO BS.ByteString
 defaultRxProtocol' c p ptid pc sp = defaultRxProtocol c p ptid (fromIntegral pc) (fromIntegral sp) 
@@ -89,8 +92,8 @@ rxProtocol2Block cfg pn ptid pc sp = do
   databytes2 <- defaultRxProtocol' cfg pn ptid secondpc secondsp
   return $ BS.append databytes1 databytes2
 
-rxProtocol3Block :: RocConfig -> Word8 -> PointTypes () -> Word -> Word8 -> IO BS.ByteString
-rxProtocol3Block  cfg pn ptid pc sp = do
+rxProtocol6Block :: RocConfig -> Word8 -> PointTypes () -> Word -> Word8 -> IO BS.ByteString
+rxProtocol6Block  cfg pn ptid pc sp = do
    let divpc = div pc 6
        firstpc = (pc - divpc - divpc - divpc - divpc - divpc) 
        secondsp = firstpc
@@ -171,13 +174,13 @@ fbUnit107PT58 = FDPT 107 pt58 4 0 defaultRxProtocol'
 fbUnit107PT59 :: FB107PT59 
 fbUnit107PT59 = FDPT 107 pt59 13 0 defaultRxProtocol'
 fbUnit107PT80 :: FB107PT80 
-fbUnit107PT80 = FDPT 107 pt80 122 0 rxProtocol3Block
+fbUnit107PT80 = FDPT 107 pt80 122 0 rxProtocol6Block
 --fbUnit107PT81 :: FB107PT81 
 --fbUnit107PT81 = FDPT 107 pt81 13 0 defaultRxProtocol'
 fbUnit107PT85 :: FB107PT85 
-fbUnit107PT85 = FDPT 107 pt85 256 0 rxProtocol3Block
+fbUnit107PT85 = FDPT 107 pt85 256 0 rxProtocol6Block
 fbUnit107PT86 :: FB107PT86 
-fbUnit107PT86 = FDPT 107 pt86 102 0 defaultRxProtocol'
+fbUnit107PT86 = FDPT 107 pt86 202 0 rxProtocol2Block
 fbUnit107PT88 :: FB107PT88 
 fbUnit107PT88 = FDPT 107 pt88 3 0 defaultRxProtocol'
 fbUnit107PT89 :: FB107PT89 
@@ -192,13 +195,19 @@ fbUnit107PT117 :: FB107PT117
 fbUnit107PT117 = FDPT 107 pt117 30 0 defaultRxProtocol'
 fbUnit107PT118 :: FB107PT118 
 fbUnit107PT118 = FDPT 107 pt118 91 0 defaultRxProtocol'
--- fbUnit107PT120 :: FB107PT120 
--- fbUnit107PT120 = FDPT 107 pt120 0 defaultRxProtocol'
 fbUnit107PT121 :: FB107PT121 
 fbUnit107PT121 = FDPT 107 pt121 151 0 defaultRxProtocol'
 fbUnit107PT122 :: FB107PT122 
 fbUnit107PT122 = FDPT 107 pt122 29 0 defaultRxProtocol'
--- fbUnit107PT176 :: FB107PT176 
--- fbUnit107PT176 = FDPT 107 pt176 0 defaultRxProtocol'
+fbUnit107PT172 :: FB107PT172 
+fbUnit107PT172 = FDPT 107 pt172 4 0 defaultRxProtocol'
+fbUnit107PT173 :: FB107PT173 
+fbUnit107PT173 = FDPT 107 pt173 18 0 defaultRxProtocol'
+fbUnit107PT174 :: FB107PT174 
+fbUnit107PT174 = FDPT 107 pt174 5 0 defaultRxProtocol'
+fbUnit107PT175 :: FB107PT175 
+fbUnit107PT175 = FDPT 107 pt175 10 0 defaultRxProtocol'
+fbUnit107PT176 :: FB107PT176 
+fbUnit107PT176 = FDPT 107 pt176 6 0 defaultRxProtocol'
 -- fbUnit107PT177 :: FB107PT177 
 -- fbUnit107PT177 = FDPT 107 pt177 0 defaultRxProtocol' 

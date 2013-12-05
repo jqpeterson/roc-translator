@@ -3,13 +3,9 @@
 module Protocol.ROC.Float where
 import Data.Word
 import Data.Binary
--- import Data.Bool
 import Data.Int
 import Data.Bits
 import Data.Binary.Get
--- import Numeric
--- import Control.Applicative
-import Debug.Trace
 
 {-| 
 
@@ -97,7 +93,7 @@ calculateExponentBits x = (fromIntegral x) - (127+23)
 -- that is why the sign has to be coded separately
 
 calculateMantessaBit :: (Integral a) => a -> Int32 
-calculateMantessaBit x = (fromIntegral x) -- `xor`0x00800000
+calculateMantessaBit x = (fromIntegral x) 
 
 byte3Mask :: Word32 
 byte3Mask   = 0xFF000000

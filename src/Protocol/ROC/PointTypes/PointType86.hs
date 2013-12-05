@@ -113,6 +113,107 @@ data PointType86 = PointType86 {
 ,pointType86ExtHistLogPnt25               :: !PointType86ExtHistLogPnt25                
 ,pointType86ArchiveType25                 :: !PointType86ArchiveType25                
 ,pointType86AveragingorRateType25         :: !PointType86AveragingorRateType25                
+,pointType86PointTagIDTLP26               :: !PointType86PointTagIDTLP26                
+,pointType86ExtHistLogPnt26               :: !PointType86ExtHistLogPnt26                
+,pointType86ArchiveType26                 :: !PointType86ArchiveType26            
+,pointType86AveragingorRateType26         :: !PointType86AveragingorRateType26                
+,pointType86PointTagIDTLP27               :: !PointType86PointTagIDTLP27                
+,pointType86ExtHistLogPnt27               :: !PointType86ExtHistLogPnt27                
+,pointType86ArchiveType27                 :: !PointType86ArchiveType27            
+,pointType86AveragingorRateType27         :: !PointType86AveragingorRateType27                
+,pointType86PointTagIDTLP28               :: !PointType86PointTagIDTLP28                
+,pointType86ExtHistLogPnt28               :: !PointType86ExtHistLogPnt28                
+,pointType86ArchiveType28                 :: !PointType86ArchiveType28            
+,pointType86AveragingorRateType28         :: !PointType86AveragingorRateType28                
+,pointType86PointTagIDTLP29               :: !PointType86PointTagIDTLP29                
+,pointType86ExtHistLogPnt29               :: !PointType86ExtHistLogPnt29                
+,pointType86ArchiveType29                 :: !PointType86ArchiveType29            
+,pointType86AveragingorRateType29         :: !PointType86AveragingorRateType29                
+,pointType86PointTagIDTLP30               :: !PointType86PointTagIDTLP30               
+,pointType86ExtHistLogPnt30               :: !PointType86ExtHistLogPnt30               
+,pointType86ArchiveType30                 :: !PointType86ArchiveType30           
+,pointType86AveragingorRateType30         :: !PointType86AveragingorRateType30               
+,pointType86PointTagIDTLP31               :: !PointType86PointTagIDTLP31                
+,pointType86ExtHistLogPnt31               :: !PointType86ExtHistLogPnt31                
+,pointType86ArchiveType31                 :: !PointType86ArchiveType31            
+,pointType86AveragingorRateType31         :: !PointType86AveragingorRateType31                
+,pointType86PointTagIDTLP32               :: !PointType86PointTagIDTLP32                
+,pointType86ExtHistLogPnt32               :: !PointType86ExtHistLogPnt32                
+,pointType86ArchiveType32                 :: !PointType86ArchiveType32            
+,pointType86AveragingorRateType32         :: !PointType86AveragingorRateType32                
+,pointType86PointTagIDTLP33               :: !PointType86PointTagIDTLP33                
+,pointType86ExtHistLogPnt33               :: !PointType86ExtHistLogPnt33                
+,pointType86ArchiveType33                 :: !PointType86ArchiveType33            
+,pointType86AveragingorRateType33         :: !PointType86AveragingorRateType33                
+,pointType86PointTagIDTLP34               :: !PointType86PointTagIDTLP34                
+,pointType86ExtHistLogPnt34               :: !PointType86ExtHistLogPnt34                
+,pointType86ArchiveType34                 :: !PointType86ArchiveType34            
+,pointType86AveragingorRateType34         :: !PointType86AveragingorRateType34                
+,pointType86PointTagIDTLP35               :: !PointType86PointTagIDTLP35                
+,pointType86ExtHistLogPnt35               :: !PointType86ExtHistLogPnt35                
+,pointType86ArchiveType35                 :: !PointType86ArchiveType35                
+,pointType86AveragingorRateType35         :: !PointType86AveragingorRateType35                
+,pointType86PointTagIDTLP36               :: !PointType86PointTagIDTLP36                
+,pointType86ExtHistLogPnt36               :: !PointType86ExtHistLogPnt36                
+,pointType86ArchiveType36                 :: !PointType86ArchiveType36                
+,pointType86AveragingorRateType36         :: !PointType86AveragingorRateType36                
+,pointType86PointTagIDTLP37               :: !PointType86PointTagIDTLP37                
+,pointType86ExtHistLogPnt37               :: !PointType86ExtHistLogPnt37                
+,pointType86ArchiveType37                 :: !PointType86ArchiveType37                
+,pointType86AveragingorRateType37         :: !PointType86AveragingorRateType37                
+,pointType86PointTagIDTLP38               :: !PointType86PointTagIDTLP38                
+,pointType86ExtHistLogPnt38               :: !PointType86ExtHistLogPnt38                
+,pointType86ArchiveType38                 :: !PointType86ArchiveType38                
+,pointType86AveragingorRateType38         :: !PointType86AveragingorRateType38                
+,pointType86PointTagIDTLP39               :: !PointType86PointTagIDTLP39                
+,pointType86ExtHistLogPnt39               :: !PointType86ExtHistLogPnt39                
+,pointType86ArchiveType39                 :: !PointType86ArchiveType39                
+,pointType86AveragingorRateType39         :: !PointType86AveragingorRateType39                
+,pointType86PointTagIDTLP40               :: !PointType86PointTagIDTLP40                
+,pointType86ExtHistLogPnt40               :: !PointType86ExtHistLogPnt40                
+,pointType86ArchiveType40                 :: !PointType86ArchiveType40                
+,pointType86AveragingorRateType40         :: !PointType86AveragingorRateType40                
+,pointType86PointTagIDTLP41               :: !PointType86PointTagIDTLP41                
+,pointType86ExtHistLogPnt41               :: !PointType86ExtHistLogPnt41                
+,pointType86ArchiveType41                 :: !PointType86ArchiveType41                
+,pointType86AveragingorRateType41         :: !PointType86AveragingorRateType41                
+,pointType86PointTagIDTLP42               :: !PointType86PointTagIDTLP42                
+,pointType86ExtHistLogPnt42               :: !PointType86ExtHistLogPnt42                
+,pointType86ArchiveType42                 :: !PointType86ArchiveType42                
+,pointType86AveragingorRateType42         :: !PointType86AveragingorRateType42                
+,pointType86PointTagIDTLP43               :: !PointType86PointTagIDTLP43                
+,pointType86ExtHistLogPnt43               :: !PointType86ExtHistLogPnt43                
+,pointType86ArchiveType43                 :: !PointType86ArchiveType43                
+,pointType86AveragingorRateType43         :: !PointType86AveragingorRateType43                
+,pointType86PointTagIDTLP44               :: !PointType86PointTagIDTLP44                
+,pointType86ExtHistLogPnt44               :: !PointType86ExtHistLogPnt44                
+,pointType86ArchiveType44                 :: !PointType86ArchiveType44                
+,pointType86AveragingorRateType44         :: !PointType86AveragingorRateType44                
+,pointType86PointTagIDTLP45               :: !PointType86PointTagIDTLP45                
+,pointType86ExtHistLogPnt45               :: !PointType86ExtHistLogPnt45                
+,pointType86ArchiveType45                 :: !PointType86ArchiveType45                
+,pointType86AveragingorRateType45         :: !PointType86AveragingorRateType45                
+,pointType86PointTagIDTLP46               :: !PointType86PointTagIDTLP46                
+,pointType86ExtHistLogPnt46               :: !PointType86ExtHistLogPnt46                
+,pointType86ArchiveType46                 :: !PointType86ArchiveType46                
+,pointType86AveragingorRateType46         :: !PointType86AveragingorRateType46                
+,pointType86PointTagIDTLP47               :: !PointType86PointTagIDTLP47                
+,pointType86ExtHistLogPnt47               :: !PointType86ExtHistLogPnt47                
+,pointType86ArchiveType47                 :: !PointType86ArchiveType47                
+,pointType86AveragingorRateType47         :: !PointType86AveragingorRateType47                
+,pointType86PointTagIDTLP48               :: !PointType86PointTagIDTLP48                
+,pointType86ExtHistLogPnt48               :: !PointType86ExtHistLogPnt48                
+,pointType86ArchiveType48                 :: !PointType86ArchiveType48                
+,pointType86AveragingorRateType48         :: !PointType86AveragingorRateType48                
+,pointType86PointTagIDTLP49               :: !PointType86PointTagIDTLP49                
+,pointType86ExtHistLogPnt49               :: !PointType86ExtHistLogPnt49                
+,pointType86ArchiveType49                 :: !PointType86ArchiveType49                
+,pointType86AveragingorRateType49         :: !PointType86AveragingorRateType49                
+,pointType86PointTagIDTLP50               :: !PointType86PointTagIDTLP50                
+,pointType86ExtHistLogPnt50               :: !PointType86ExtHistLogPnt50                
+,pointType86ArchiveType50                 :: !PointType86ArchiveType50                
+,pointType86AveragingorRateType50         :: !PointType86AveragingorRateType50
+
   
 } deriving (Read,Eq, Show, Generic)                       
                                   
@@ -218,6 +319,106 @@ type PointType86PointTagIDTLP25             = [Word8]
 type PointType86ExtHistLogPnt25             = [Word8]                                 
 type PointType86ArchiveType25               = Word8                                 
 type PointType86AveragingorRateType25       = Word8                                 
+type PointType86PointTagIDTLP26             = [Word8]                                 
+type PointType86ExtHistLogPnt26             = [Word8]                                 
+type PointType86ArchiveType26               = Word8                                 
+type PointType86AveragingorRateType26       = Word8                                 
+type PointType86PointTagIDTLP27             = [Word8]                                 
+type PointType86ExtHistLogPnt27             = [Word8]                                 
+type PointType86ArchiveType27               = Word8                                 
+type PointType86AveragingorRateType27       = Word8                                 
+type PointType86PointTagIDTLP28             = [Word8]                                 
+type PointType86ExtHistLogPnt28             = [Word8]                                 
+type PointType86ArchiveType28               = Word8                                 
+type PointType86AveragingorRateType28       = Word8                                 
+type PointType86PointTagIDTLP29             = [Word8]                                 
+type PointType86ExtHistLogPnt29             = [Word8]                                 
+type PointType86ArchiveType29               = Word8                                 
+type PointType86AveragingorRateType29       = Word8                                 
+type PointType86PointTagIDTLP30             = [Word8]                                 
+type PointType86ExtHistLogPnt30             = [Word8]                                 
+type PointType86ArchiveType30               = Word8                                 
+type PointType86AveragingorRateType30       = Word8                                 
+type PointType86PointTagIDTLP31             = [Word8]                                 
+type PointType86ExtHistLogPnt31             = [Word8]                                 
+type PointType86ArchiveType31               = Word8                                 
+type PointType86AveragingorRateType31       = Word8                                 
+type PointType86PointTagIDTLP32             = [Word8]                                 
+type PointType86ExtHistLogPnt32             = [Word8]                                 
+type PointType86ArchiveType32               = Word8                                 
+type PointType86AveragingorRateType32       = Word8                                 
+type PointType86PointTagIDTLP33             = [Word8]                                 
+type PointType86ExtHistLogPnt33             = [Word8]                                 
+type PointType86ArchiveType33               = Word8                                 
+type PointType86AveragingorRateType33       = Word8                                 
+type PointType86PointTagIDTLP34             = [Word8]                                 
+type PointType86ExtHistLogPnt34             = [Word8]                                 
+type PointType86ArchiveType34               = Word8                                 
+type PointType86AveragingorRateType34       = Word8                                 
+type PointType86PointTagIDTLP35             = [Word8]                                 
+type PointType86ExtHistLogPnt35             = [Word8]                                 
+type PointType86ArchiveType35               = Word8                                 
+type PointType86AveragingorRateType35       = Word8                                 
+type PointType86PointTagIDTLP36             = [Word8]                                 
+type PointType86ExtHistLogPnt36             = [Word8]                                 
+type PointType86ArchiveType36               = Word8                                 
+type PointType86AveragingorRateType36       = Word8                                 
+type PointType86PointTagIDTLP37             = [Word8]                                 
+type PointType86ExtHistLogPnt37             = [Word8]                                 
+type PointType86ArchiveType37               = Word8                                 
+type PointType86AveragingorRateType37       = Word8                                 
+type PointType86PointTagIDTLP38             = [Word8]                                 
+type PointType86ExtHistLogPnt38             = [Word8]                                 
+type PointType86ArchiveType38               = Word8                                 
+type PointType86AveragingorRateType38       = Word8                                 
+type PointType86PointTagIDTLP39             = [Word8]                                 
+type PointType86ExtHistLogPnt39             = [Word8]                                 
+type PointType86ArchiveType39               = Word8                                 
+type PointType86AveragingorRateType39       = Word8                                 
+type PointType86PointTagIDTLP40             = [Word8]                                 
+type PointType86ExtHistLogPnt40             = [Word8]                                 
+type PointType86ArchiveType40               = Word8                                 
+type PointType86AveragingorRateType40       = Word8                                 
+type PointType86PointTagIDTLP41             = [Word8]                                 
+type PointType86ExtHistLogPnt41             = [Word8]                                 
+type PointType86ArchiveType41               = Word8                                 
+type PointType86AveragingorRateType41       = Word8                                 
+type PointType86PointTagIDTLP42             = [Word8]                                 
+type PointType86ExtHistLogPnt42             = [Word8]                                 
+type PointType86ArchiveType42               = Word8                                 
+type PointType86AveragingorRateType42       = Word8                                 
+type PointType86PointTagIDTLP43             = [Word8]                                 
+type PointType86ExtHistLogPnt43             = [Word8]                                 
+type PointType86ArchiveType43               = Word8                                 
+type PointType86AveragingorRateType43       = Word8                                 
+type PointType86PointTagIDTLP44             = [Word8]                                 
+type PointType86ExtHistLogPnt44             = [Word8]                                 
+type PointType86ArchiveType44               = Word8                                 
+type PointType86AveragingorRateType44       = Word8                                 
+type PointType86PointTagIDTLP45             = [Word8]                                 
+type PointType86ExtHistLogPnt45             = [Word8]                                 
+type PointType86ArchiveType45               = Word8                                 
+type PointType86AveragingorRateType45       = Word8                                 
+type PointType86PointTagIDTLP46             = [Word8]                                 
+type PointType86ExtHistLogPnt46             = [Word8]                                 
+type PointType86ArchiveType46               = Word8                                 
+type PointType86AveragingorRateType46       = Word8                                 
+type PointType86PointTagIDTLP47             = [Word8]                                 
+type PointType86ExtHistLogPnt47             = [Word8]                                 
+type PointType86ArchiveType47               = Word8                                 
+type PointType86AveragingorRateType47       = Word8                                 
+type PointType86PointTagIDTLP48             = [Word8]                                 
+type PointType86ExtHistLogPnt48             = [Word8]                                 
+type PointType86ArchiveType48               = Word8                                 
+type PointType86AveragingorRateType48       = Word8                                 
+type PointType86PointTagIDTLP49             = [Word8]                                 
+type PointType86ExtHistLogPnt49             = [Word8]                                 
+type PointType86ArchiveType49               = Word8                                 
+type PointType86AveragingorRateType49       = Word8                                 
+type PointType86PointTagIDTLP50             = [Word8]                                 
+type PointType86ExtHistLogPnt50             = [Word8]                                 
+type PointType86ArchiveType50               = Word8                                 
+type PointType86AveragingorRateType50       = Word8
   
 pointType86Parser :: Get PointType86
 pointType86Parser = do 
@@ -324,6 +525,106 @@ pointType86Parser = do
   extHistLogPnt25 <- getTLP
   archiveType25 <- getWord8
   averagingorRateType25 <- getWord8
+  pointTagIDTLP26 <- getTLP
+  extHistLogPnt26 <- getTLP
+  archiveType26 <- getWord8
+  averagingorRateType26 <- getWord8
+  pointTagIDTLP27 <- getTLP
+  extHistLogPnt27 <- getTLP
+  archiveType27 <- getWord8
+  averagingorRateType27 <- getWord8
+  pointTagIDTLP28 <- getTLP
+  extHistLogPnt28 <- getTLP
+  archiveType28 <- getWord8
+  averagingorRateType28 <- getWord8
+  pointTagIDTLP29 <- getTLP
+  extHistLogPnt29 <- getTLP
+  archiveType29 <- getWord8
+  averagingorRateType29 <- getWord8
+  pointTagIDTLP30 <- getTLP
+  extHistLogPnt30 <- getTLP
+  archiveType30 <- getWord8
+  averagingorRateType30 <- getWord8
+  pointTagIDTLP31 <- getTLP
+  extHistLogPnt31 <- getTLP
+  archiveType31 <- getWord8
+  averagingorRateType31 <- getWord8
+  pointTagIDTLP32 <- getTLP
+  extHistLogPnt32 <- getTLP
+  archiveType32 <- getWord8
+  averagingorRateType32 <- getWord8
+  pointTagIDTLP33 <- getTLP
+  extHistLogPnt33 <- getTLP
+  archiveType33 <- getWord8
+  averagingorRateType33 <- getWord8
+  pointTagIDTLP34 <- getTLP
+  extHistLogPnt34 <- getTLP
+  archiveType34 <- getWord8
+  averagingorRateType34 <- getWord8
+  pointTagIDTLP35 <- getTLP
+  extHistLogPnt35 <- getTLP
+  archiveType35 <- getWord8
+  averagingorRateType35 <-getWord8 
+  pointTagIDTLP36 <- getTLP
+  extHistLogPnt36 <- getTLP
+  archiveType36 <- getWord8
+  averagingorRateType36 <- getWord8
+  pointTagIDTLP37 <- getTLP
+  extHistLogPnt37 <- getTLP
+  archiveType37 <- getWord8
+  averagingorRateType37 <- getWord8
+  pointTagIDTLP38 <- getTLP
+  extHistLogPnt38 <- getTLP
+  archiveType38 <- getWord8
+  averagingorRateType38 <- getWord8
+  pointTagIDTLP39 <- getTLP
+  extHistLogPnt39 <- getTLP
+  archiveType39 <- getWord8
+  averagingorRateType39 <- getWord8
+  pointTagIDTLP40 <- getTLP
+  extHistLogPnt40 <- getTLP
+  archiveType40 <- getWord8
+  averagingorRateType40 <- getWord8
+  pointTagIDTLP41 <- getTLP
+  extHistLogPnt41 <- getTLP
+  archiveType41 <- getWord8
+  averagingorRateType41 <- getWord8
+  pointTagIDTLP42 <- getTLP
+  extHistLogPnt42 <- getTLP
+  archiveType42 <- getWord8
+  averagingorRateType42 <- getWord8
+  pointTagIDTLP43 <- getTLP
+  extHistLogPnt43 <- getTLP
+  archiveType43 <- getWord8
+  averagingorRateType43 <- getWord8
+  pointTagIDTLP44 <- getTLP
+  extHistLogPnt44 <- getTLP
+  archiveType44 <- getWord8
+  averagingorRateType44 <- getWord8
+  pointTagIDTLP45 <- getTLP
+  extHistLogPnt45 <- getTLP
+  archiveType45 <- getWord8
+  averagingorRateType45 <- getWord8
+  pointTagIDTLP46 <- getTLP
+  extHistLogPnt46 <- getTLP
+  archiveType46 <- getWord8
+  averagingorRateType46 <- getWord8
+  pointTagIDTLP47 <- getTLP
+  extHistLogPnt47 <- getTLP
+  archiveType47 <- getWord8
+  averagingorRateType47 <- getWord8
+  pointTagIDTLP48 <- getTLP
+  extHistLogPnt48 <- getTLP
+  archiveType48 <- getWord8
+  averagingorRateType48 <- getWord8
+  pointTagIDTLP49 <- getTLP
+  extHistLogPnt49 <- getTLP
+  archiveType49 <- getWord8
+  averagingorRateType49 <- getWord8
+  pointTagIDTLP50 <- getTLP
+  extHistLogPnt50 <- getTLP
+  archiveType50 <- getWord8
+  averagingorRateType50 <- getWord8  
   
   return $ PointType86 
     maxNumExtHistPnts sampleLogInterval pointTagIDTLP1 extHistLogPnt1 archiveType1 averagingorRateType1 pointTagIDTLP2 extHistLogPnt2 archiveType2 averagingorRateType2 
@@ -335,4 +636,14 @@ pointType86Parser = do
     averagingorRateType15 pointTagIDTLP16 extHistLogPnt16 archiveType16 averagingorRateType16 pointTagIDTLP17 extHistLogPnt17 archiveType17 averagingorRateType17 pointTagIDTLP18 
     extHistLogPnt18 archiveType18 averagingorRateType18 pointTagIDTLP19 extHistLogPnt19 archiveType19 averagingorRateType19 pointTagIDTLP20 extHistLogPnt20 archiveType20 
     averagingorRateType20 pointTagIDTLP21 extHistLogPnt21 archiveType21 averagingorRateType21 pointTagIDTLP22 extHistLogPnt22 archiveType22 averagingorRateType22 pointTagIDTLP23 
-    extHistLogPnt23 archiveType23 averagingorRateType23 pointTagIDTLP24 extHistLogPnt24 archiveType24 averagingorRateType24 pointTagIDTLP25 extHistLogPnt25 archiveType25 averagingorRateType25 
+    extHistLogPnt23 archiveType23 averagingorRateType23 pointTagIDTLP24 extHistLogPnt24 archiveType24 averagingorRateType24 pointTagIDTLP25 extHistLogPnt25 archiveType25 
+    averagingorRateType25 pointTagIDTLP26 extHistLogPnt26 archiveType26 averagingorRateType26 pointTagIDTLP27 extHistLogPnt27 archiveType27 averagingorRateType27 pointTagIDTLP28 
+    extHistLogPnt28 archiveType28 averagingorRateType28 pointTagIDTLP29 extHistLogPnt29 archiveType29 averagingorRateType29 pointTagIDTLP30 extHistLogPnt30 archiveType30 
+    averagingorRateType30 pointTagIDTLP31 extHistLogPnt31 archiveType31 averagingorRateType31 pointTagIDTLP32 extHistLogPnt32 archiveType32 averagingorRateType32 pointTagIDTLP33  
+    extHistLogPnt33 archiveType33 averagingorRateType33 pointTagIDTLP34 extHistLogPnt34 archiveType34 averagingorRateType34 pointTagIDTLP35 extHistLogPnt35 archiveType35 
+    averagingorRateType35 pointTagIDTLP36 extHistLogPnt36 archiveType36 averagingorRateType36 pointTagIDTLP37 extHistLogPnt37 archiveType37 averagingorRateType37 pointTagIDTLP38 
+    extHistLogPnt38 archiveType38 averagingorRateType38 pointTagIDTLP39 extHistLogPnt39 archiveType39 averagingorRateType39 pointTagIDTLP40 extHistLogPnt40 archiveType40 
+    averagingorRateType40 pointTagIDTLP41 extHistLogPnt41 archiveType41 averagingorRateType41 pointTagIDTLP42 extHistLogPnt42 archiveType42 averagingorRateType42 pointTagIDTLP43  
+    extHistLogPnt43 archiveType43 averagingorRateType43 pointTagIDTLP44 extHistLogPnt44 archiveType44 averagingorRateType44 pointTagIDTLP45 extHistLogPnt45 archiveType45 
+    averagingorRateType45 pointTagIDTLP46 extHistLogPnt46 archiveType46 averagingorRateType46 pointTagIDTLP47 extHistLogPnt47 archiveType47 averagingorRateType47 pointTagIDTLP48 
+    extHistLogPnt48 archiveType48 averagingorRateType48 pointTagIDTLP49 extHistLogPnt49 archiveType49 averagingorRateType49 pointTagIDTLP50 extHistLogPnt50 archiveType50 averagingorRateType50
