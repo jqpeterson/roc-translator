@@ -61,6 +61,7 @@ module Protocol.ROC.PointTypes (module PointTypes
                                ,pt174 
                                ,pt175 
                                ,pt176 
+                               ,pt177
                                ,PointTypes (..)
                                ) where
 
@@ -125,6 +126,8 @@ import Protocol.ROC.PointTypes.PointType173 as PointTypes
 import Protocol.ROC.PointTypes.PointType174 as PointTypes
 import Protocol.ROC.PointTypes.PointType175 as PointTypes
 import Protocol.ROC.PointTypes.PointType176 as PointTypes
+import Protocol.ROC.PointTypes.PointType177 as PointTypes
+
 
 data PointTypes a = PTID0 (Either a PointType0)
                   | PTID1 (Either a PointType1)
@@ -183,6 +186,7 @@ data PointTypes a = PTID0 (Either a PointType0)
                   | PTID174 (Either a PointType174)                    
                   | PTID175 (Either a PointType175)                    
                   | PTID176 (Either a PointType176)
+                  | PTID177 (Either a PointType177)  
 
                   deriving (Eq,Show)
 
@@ -300,6 +304,8 @@ pt175 :: PointTypes ()
 pt175 = PTID175 $ Left ()
 pt176 :: PointTypes ()
 pt176 = PTID176 $ Left ()
+pt177 :: PointTypes ()
+pt177 = PTID177 $ Left ()
 
 
 decodePTID :: PointTypes a -> Word8
@@ -360,6 +366,7 @@ decodePTID (PTID173 _) = 173
 decodePTID (PTID174 _) = 174
 decodePTID (PTID175 _) = 175
 decodePTID (PTID176 _) = 176
+decodePTID (PTID177 _) = 177
 -----------------------------------------------------------------------------------
 --data PointTypeTest = PointTypeTest { 
 --pointTypeTestLowRead :: !PointTypeTestLowRead
@@ -431,6 +438,7 @@ fetchPointType  (PTID173 _ ) bs = PTID173 $ decodeToEither $ runGetIncremental p
 fetchPointType  (PTID174 _ ) bs = PTID174 $ decodeToEither $ runGetIncremental pointType174Parser `pushChunks` bs
 fetchPointType  (PTID175 _ ) bs = PTID175 $ decodeToEither $ runGetIncremental pointType175Parser `pushChunks` bs
 fetchPointType  (PTID176 _ ) bs = PTID176 $ decodeToEither $ runGetIncremental pointType176Parser `pushChunks` bs
+fetchPointType  (PTID177 _ ) bs = PTID177 $ decodeToEither $ runGetIncremental pointType177Parser `pushChunks` bs
 
 decodeToEither :: (Show a) => Decoder a -> Either LB.ByteString a
 decodeToEither (Fail _ _ s) = Left $ C8.append "decoder Failed with"  (C8.pack s)

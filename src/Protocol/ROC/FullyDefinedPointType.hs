@@ -209,5 +209,5 @@ fbUnit107PT175 :: FB107PT175
 fbUnit107PT175 = FDPT 107 pt175 10 0 defaultRxProtocol'
 fbUnit107PT176 :: FB107PT176 
 fbUnit107PT176 = FDPT 107 pt176 6 0 defaultRxProtocol'
--- fbUnit107PT177 :: FB107PT177 
--- fbUnit107PT177 = FDPT 107 pt177 0 defaultRxProtocol' 
+fbUnit107PT177 :: FB107PT177 
+fbUnit107PT177 = FDPT 107 pt177 37 0 defaultRxProtocol' 
