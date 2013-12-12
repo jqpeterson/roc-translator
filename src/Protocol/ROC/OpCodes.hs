@@ -7,8 +7,8 @@ import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as LB
 import Data.ByteString.Builder
 import System.Hardware.Serialport
---import Protocol.ROC.Utils
 import Control.Applicative
+import Protocol.ROC.RocSerialize
       
 opCode0 :: BlockNumber -> RocConfig -> BS.ByteString
 opCode0 bn cfg = let hostAddress = rocConfigHostAddress cfg
@@ -39,6 +39,13 @@ opCode17 cfg = let hostAddress = rocConfigHostAddress cfg
                    password = toLazyByteString.word16LE  $ rocPassword cfg
                in  BS.append (BS.pack (rocAddress ++ hostAddress ++ [17,5])) (LB.toStrict $ LB.append login password)
 
+
+opCode166 :: RocSerialize a => Word8 -> PointNumber -> ParameterNumber -> a -> RocConfig -> BS.ByteString
+opCode166 ptid pn prn pdata cfg = let hostAddress = rocConfigHostAddress cfg
+                                      rocAddress = rocConfigRocAddress cfg 
+                                      pdataBS = LB.toStrict $ runPutROC pdata 
+                                      pl = (4 + (fromIntegral $ BS.length pdataBS))
+                                  in BS.append (BS.pack (rocAddress ++ hostAddress ++ [166,pl,ptid,pn,1,prn])) pdataBS
 
 opCode167 :: Word8 -> PointNumber -> Word8 -> StartParameter -> RocConfig -> BS.ByteString
 opCode167 ptid pn pc ps cfg = let hostAddress = rocConfigHostAddress cfg

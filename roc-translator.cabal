@@ -19,6 +19,7 @@ Library
                         Protocol.ROC.Float
                         Protocol.ROC.Utils
                         Protocol.ROC.FullyDefinedPointType
+                        Protocol.ROC.RocSerialize                       
 
   Other-Modules:        Protocol.ROC.Internal
 

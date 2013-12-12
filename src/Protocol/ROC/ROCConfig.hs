@@ -19,19 +19,20 @@ data RocConfig = RocConfig {  rocConfigPort         :: FilePath
                              }
                  
 
-data FullyDefinedPointType cfg pn rt pt pc sp rp = FDPT { fdptROCType                   :: rt
-                                                         ,fdptPointTypeID               :: pt
-                                                         ,fdptParameterCount            :: pc                                                                               
-                                                         ,fdptStartParameter            :: sp                                                 
-                                                         ,fdptRxProtocol                :: (cfg -> pn -> pt -> pc -> sp -> rp)
+data FullyDefinedPointType cfg pn rt pt pc sp rp = FDPT { fdptROCType                  :: rt
+                                                        ,fdptPointTypeID               :: pt
+                                                        ,fdptParameterCount            :: pc                                                                               
+                                                        ,fdptStartParameter            :: sp                                                 
+                                                        ,fdptRxProtocol                :: (cfg -> pn -> pt -> pc -> sp -> rp)
                                                         } 
                                        
 
 type ROCType                 = Word8               
 type PointTypeID a           = PointTypes a
-type PointNumber             = Word8 -- Maybe Int         
+type PointNumber             = Word8
 type ParameterCount          = Word          
 type StartParameter          = Word8                
+type ParameterNumber         = Word8
 
-type DefaultPointType = FullyDefinedPointType RocConfig Word8 ROCType (PointTypes ()) ParameterCount StartParameter (IO BS.ByteString)
-                      
+
+type DefaultPointType = FullyDefinedPointType RocConfig PointNumber ROCType (PointTypes ()) ParameterCount StartParameter (IO BS.ByteString)
