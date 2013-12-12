@@ -46,11 +46,6 @@ instance RocSerialize ByteString where
 instance RocSerialize Float where 
   rput = putFloatle 
   
--- instance RocSerialize [Word8] where
---   rput w8lst = L.pack (charCast <$> w8lst) 
---     where charCast :: Word8 -> Char8
---           charCast = fromIntegral
-
 instance RocSerialize [Word8] where
   rput = putWord8List
     

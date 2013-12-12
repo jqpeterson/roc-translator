@@ -14,6 +14,7 @@ import Control.Applicative
 import Numeric                                            
 import Data.Int
 import Data.ByteString.Builder
+import Data.Word
 
 getPointType :: RocConfig -> DefaultPointType -> PointNumber -> IO ()
 getPointType cfg fdpt pn = do
