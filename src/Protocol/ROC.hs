@@ -10,11 +10,11 @@ import Protocol.ROC.FullyDefinedPointType
 import Protocol.ROC.ROCConfig
 import Protocol.ROC.OpCodes
 import Protocol.ROC.RocSerialize
-import Control.Applicative
-import Numeric                                            
-import Data.Int
-import Data.ByteString.Builder
-import Data.Word
+-- import Control.Applicative
+-- import Numeric                                            
+-- import Data.Int
+-- import Data.ByteString.Builder
+-- import Data.Word
 
 getPointType :: RocConfig -> DefaultPointType -> PointNumber -> IO ()
 getPointType cfg fdpt pn = do
