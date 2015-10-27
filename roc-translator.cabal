@@ -1,5 +1,5 @@
 Name:                   roc-translator
-Version:                0.0.0
+Version:                0.0.1
 Author:                 Jeremy<jpeterson@aacs-us.com>
 Maintainer:             Jeremy<jpeterson@aacs-us.com>
 License:                BSD3
@@ -24,14 +24,14 @@ Library
   Other-Modules:        Protocol.ROC.Internal
 
   Build-Depends:        base >= 4 && < 5
-                       , crc-fast == 0.1.0 
-                       , serialport >= 0.4.7 && < 0.4.8
-                       , transformers >= 0.3.0.0 && < 0.4.0.0
-                       , bytestring >= 0.10.4.0 && < 0.10.4.1
-                       , lens       >= 3.10 && < 4
+                       , crc-fast     == 0.1.0 
+                       , serialport   >= 0.4.7 && < 0.4.8
+                       , transformers >= 0.3.0.0 
+                       , bytestring   >= 0.10.4.0 
+                       , lens         >= 3.10
                        , binary
-                       , crc16-table == 0.1
-                       , time == 1.4.0.1
+                       , crc16-table  == 0.1
+                       , time         >= 1.4.0.1
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
@@ -39,7 +39,6 @@ Test-Suite spec
   Hs-Source-Dirs:       test
   Ghc-Options:          -Wall
   Main-Is:              Spec.hs
---  Other-Modules:        Protocol.ROC.FloatSpec
   Build-Depends:        base
                       , roc-translator
                       , hspec

@@ -1,4 +1,4 @@
-{-# LANGUAGE RankNTypes, OverloadedStrings, BangPatterns #-}
+{-# LANGUAGE RankNTypes, OverloadedStrings #-}
 module Protocol.ROC where
 
 import System.Hardware.Serialport
@@ -11,7 +11,7 @@ import Protocol.ROC.ROCConfig
 import Protocol.ROC.OpCodes
 import Protocol.ROC.RocSerialize
 -- import Control.Applicative
--- import Numeric                                            
+import Numeric                                            
 -- import Data.Int
 -- import Data.ByteString.Builder
 -- import Data.Word
@@ -23,7 +23,7 @@ getPointType cfg fdpt pn = do
       pc = fdptParameterCount fdpt
       sp = fdptStartParameter fdpt
   dataBytes <- fdataBytes cfg pn ptid pc sp    
-  fetchedPointType <- return $ fetchPointType ptid (LB.fromStrict $ dataBytes)
+  let fetchedPointType = fetchPointType ptid (LB.fromStrict dataBytes)
   print fetchedPointType
 
 writePointType :: RocSerialize a => RocConfig -> DefaultPointType -> PointNumber -> ParameterNumber -> a -> IO ()
@@ -35,12 +35,11 @@ writePointType cfg fdpt pn prn pdata = do
       databytes = BS.append (opCode166 pt pn prn pdata cfg) (lzyBSto16BScrc.pack8to16 $ BS.unpack $ opCode166 pt pn prn pdata cfg)
   s <- openSerial port defaultSerialSettings { commSpeed = commRate } 
   print $ showInt <$> BS.unpack databytes <*> [""]
-  _ <- send s $ databytes
+  _ <- send s databytes
   receivebs <- recvAllBytes s 255
   closeSerial s
   print $ showInt <$> BS.unpack receivebs <*> [""]
   
-
 runOpCodeRaw :: RocConfig -> (RocConfig -> BS.ByteString) -> IO BS.ByteString
 runOpCodeRaw cfg opCode = do
   let port = rocConfigPort cfg
@@ -51,3 +50,6 @@ runOpCodeRaw cfg opCode = do
   closeSerial s
   print $ showInt <$> BS.unpack receivebs <*> [""]
   return receivebs
+
+testRocConfig :: RocConfig
+testRocConfig = RocConfig "/dev/ttyUSB0" [240,240] [1,3] CS19200 "LOI" 1000

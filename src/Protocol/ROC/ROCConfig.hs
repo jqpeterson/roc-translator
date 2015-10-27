@@ -1,4 +1,4 @@
-{-# LANGUAGE RankNTypes, OverloadedStrings, BangPatterns #-}
+{-# LANGUAGE RankNTypes, OverloadedStrings #-}
 module Protocol.ROC.ROCConfig where
 
 import System.Hardware.Serialport
