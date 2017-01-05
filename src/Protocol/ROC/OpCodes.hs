@@ -8,22 +8,22 @@ import qualified Data.ByteString.Lazy as LB
 import Data.ByteString.Builder
 import System.Hardware.Serialport
 import Control.Applicative
-import Protocol.ROC.RocSerialize
+--import Protocol.ROC.RocSerialize
       
-opCode0 :: BlockNumber -> RocConfig -> BS.ByteString
-opCode0 bn cfg = let hostAddress = rocConfigHostAddress cfg
-                     rocAddress = rocConfigRocAddress cfg
-                 in BS.pack (rocAddress ++ hostAddress ++ [0,2,bn,255])
+-- opCode0 :: BlockNumber -> RocConfig -> BS.ByteString
+-- opCode0 bn cfg = let hostAddress = rocConfigHostAddress cfg
+--                      rocAddress = rocConfigRocAddress cfg
+--                  in BS.pack (rocAddress ++ hostAddress ++ [0,2,bn,255])
 
-opCode6 :: RocConfig -> BS.ByteString
-opCode6 cfg = let hostAddress = rocConfigHostAddress cfg
-                  rocAddress = rocConfigRocAddress cfg
-              in BS.pack (rocAddress ++ hostAddress ++ [6,0])
+-- opCode6 :: RocConfig -> BS.ByteString
+-- opCode6 cfg = let hostAddress = rocConfigHostAddress cfg
+--                   rocAddress = rocConfigRocAddress cfg
+--               in BS.pack (rocAddress ++ hostAddress ++ [6,0])
 
-opCode7 :: RocConfig -> BS.ByteString
-opCode7 cfg = let hostAddress = rocConfigHostAddress cfg
-                  rocAddress = rocConfigRocAddress cfg
-              in BS.pack (rocAddress ++ hostAddress ++ [7,0])                 
+-- opCode7 :: RocConfig -> BS.ByteString
+-- opCode7 cfg = let hostAddress = rocConfigHostAddress cfg
+--                   rocAddress = rocConfigRocAddress cfg
+--               in BS.pack (rocAddress ++ hostAddress ++ [7,0])                 
                  
 -- opCode8 :: UTCTime -> RocConfig -> BS.ByteString
 -- opCode8 timeData cfg = let hostAddress = rocConfigHostAddress cfg
@@ -31,12 +31,12 @@ opCode7 cfg = let hostAddress = rocConfigHostAddress cfg
 --                            timeDataBytes = BS.
 --                        in BS.append (BS.pack (rocAddress ++ hostAddress ++ [8])) (timeData)
 
-opCode10 :: RocConfig -> BS.ByteString
-opCode10 cfg = let hostAddress = rocConfigHostAddress cfg
-                   rocAddress = rocConfigRocAddress cfg
-                   login = toLazyByteString.stringUtf8 $ rocLogin cfg
-                   password = toLazyByteString.word16LE  $ rocPassword cfg
-               in  BS.pack (rocAddress ++ hostAddress ++ [10,3,0,0,44])
+-- opCode10 :: RocConfig -> BS.ByteString
+-- opCode10 cfg = let hostAddress = rocConfigHostAddress cfg
+--                    rocAddress = rocConfigRocAddress cfg
+--                    login = toLazyByteString.stringUtf8 $ rocLogin cfg
+--                    password = toLazyByteString.word16LE  $ rocPassword cfg
+--                in  BS.pack (rocAddress ++ hostAddress ++ [10,3,0,0,44])
 
 opCode17 :: RocConfig -> BS.ByteString
 opCode17 cfg = let hostAddress = rocConfigHostAddress cfg
@@ -46,12 +46,12 @@ opCode17 cfg = let hostAddress = rocConfigHostAddress cfg
                in  BS.append (BS.pack (rocAddress ++ hostAddress ++ [17,5])) (LB.toStrict $ LB.append login password)
 
 
-opCode166 :: RocSerialize a => Word8 -> PointNumber -> ParameterNumber -> a -> RocConfig -> BS.ByteString
-opCode166 ptid pn prn pdata cfg = let hostAddress = rocConfigHostAddress cfg
-                                      rocAddress = rocConfigRocAddress cfg 
-                                      pdataBS = LB.toStrict $ runPutROC pdata 
-                                      pl = (4 + (fromIntegral $ BS.length pdataBS))
-                                  in BS.append (BS.pack (rocAddress ++ hostAddress ++ [166,pl,ptid,pn,1,prn])) pdataBS
+-- opCode166 :: RocSerialize a => Word8 -> PointNumber -> ParameterNumber -> a -> RocConfig -> BS.ByteString
+-- opCode166 ptid pn prn pdata cfg = let hostAddress = rocConfigHostAddress cfg
+--                                       rocAddress = rocConfigRocAddress cfg 
+--                                       pdataBS = LB.toStrict $ runPutROC pdata 
+--                                       pl = (4 + (fromIntegral $ BS.length pdataBS))
+--                                   in BS.append (BS.pack (rocAddress ++ hostAddress ++ [166,pl,ptid,pn,1,prn])) pdataBS
 
 opCode167 :: Word8 -> PointNumber -> Word8 -> StartParameter -> RocConfig -> BS.ByteString
 opCode167 ptid pn pc ps cfg = let hostAddress = rocConfigHostAddress cfg

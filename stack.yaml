@@ -1,0 +1,11 @@
+flags: {}
+packages:
+- '.'
+- location:
+    git: https://github.com/plow-technologies/crc16-calculator.git
+    commit: 91247d631139ef9ebb9668fe9fba3b7e46cf4aee
+  extra-dep: true
+extra-deps:
+- serialport-0.4.7
+  
+resolver: lts-7.14

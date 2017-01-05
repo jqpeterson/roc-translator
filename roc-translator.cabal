@@ -1,5 +1,5 @@
 Name:                   roc-translator
-Version:                0.0.1
+Version:                0.1.0
 Author:                 Jeremy<jpeterson@aacs-us.com>
 Maintainer:             Jeremy<jpeterson@aacs-us.com>
 License:                BSD3
@@ -15,23 +15,23 @@ Library
   GHC-Options:          -Wall
   Exposed-Modules:      Protocol.ROC
                         Protocol.ROC.OpCodes
-                        Protocol.ROC.PointTypes
-                        Protocol.ROC.Float
-                        Protocol.ROC.Utils
-                        Protocol.ROC.FullyDefinedPointType
-                        Protocol.ROC.RocSerialize                       
+                        -- Protocol.ROC.PointTypes
+                        -- Protocol.ROC.Float
+                        -- Protocol.ROC.Utils
+                        -- Protocol.ROC.FullyDefinedPointType
+                        -- Protocol.ROC.RocSerialize                       
 
   Other-Modules:        Protocol.ROC.Internal
 
   Build-Depends:        base >= 4 && < 5
-                       , crc-fast     == 0.1.0 
-                       , serialport   >= 0.4.7 && < 0.4.8
-                       , transformers >= 0.3.0.0 
-                       , bytestring   >= 0.10.4.0 
-                       , lens         >= 3.10
+                       , crc16-calculator == 0.0.1 
+                       , serialport
+                       , transformers 
+                       , bytestring    
+                       , lens
                        , binary
-                       , crc16-table  == 0.1
-                       , time         >= 1.4.0.1
+                       , cereal
+                       , time
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0

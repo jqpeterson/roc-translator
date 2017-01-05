@@ -5,7 +5,7 @@ import System.Hardware.Serialport
 import Data.Word
 import qualified Data.ByteString as BS
 --import qualified Data.ByteString.Lazy as LB
-import Protocol.ROC.PointTypes
+--import Protocol.ROC.PointTypes
 
 type BlockNumber  = Word8                                                 
 type RocAddress   = [Word8]
@@ -28,11 +28,11 @@ data FullyDefinedPointType cfg pn rt pt pc sp rp = FDPT { fdptROCType           
                                        
 
 type ROCType                 = Word8               
-type PointTypeID a           = PointTypes a
+--type PointTypeID a           = PointTypes a
 type PointNumber             = Word8
-type ParameterCount          = Word          
+type ParameterCount          = Word8          
 type StartParameter          = Word8                
 type ParameterNumber         = Word8
+type PointType               = Word8
 
-
-type DefaultPointType = FullyDefinedPointType RocConfig PointNumber ROCType (PointTypes ()) ParameterCount StartParameter (IO BS.ByteString)
+--type DefaultPointType = FullyDefinedPointType RocConfig PointNumber ROCType (PointTypes ()) ParameterCount StartParameter (IO BS.ByteString)
